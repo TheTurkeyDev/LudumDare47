@@ -5,12 +5,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using Game1.Engine.Items;
 
 namespace EG2DCS.Engine.Screen_Manager
 {
     class GameScreen : BaseScreen
     {
-        private World CurrentWorld { get; set; } = new World();
+        private World CurrentWorld { get; } = new World();
 
         public GameScreen()
         {
@@ -22,18 +23,18 @@ namespace EG2DCS.Engine.Screen_Manager
         {
             base.HandleInput();
 
-            if (base.focusedWidget != null)
+            if (FocusedWidget != null)
                 return;
 
             if (Input.KeyDown(Keys.A))
-                CurrentWorld.MoveEntity(CurrentWorld.player, -4, 0);
+                CurrentWorld.MoveEntity(CurrentWorld.Player, -4, 0);
 
             if (Input.KeyDown(Keys.D))
-                CurrentWorld.MoveEntity(CurrentWorld.player, 4, 0);
+                CurrentWorld.MoveEntity(CurrentWorld.Player, 4, 0);
 
             if (Input.KeyPressed(Keys.Escape))
             {
-                if (base.PopOverlay() == null)
+                if (PopOverlay() == null)
                 {
                     ScreenManager.KillAll(false, "Gametest");
                 }
@@ -69,7 +70,7 @@ namespace EG2DCS.Engine.Screen_Manager
 
             //Inventory
             Universal.SpriteBatch.Draw(Textures.Null, new Rectangle(100, (int)Universal.GameSize.Y - 120, 5, 120), Color.DarkGray);
-            List<ItemStack> stacks = CurrentWorld.player.Inventory.Items;
+            List<ItemStack> stacks = CurrentWorld.Player.Inventory.Items;
             for (int i = 0; i < stacks.Count; i++)
             {
                 ItemStack stack = stacks[i];

@@ -12,10 +12,8 @@ namespace Ludum_Dare_47.Engine.Entities
     class Door : Entity
     {
         private bool Locked { get; set; } = true;
-        public Door(Rectangle rect) : base(rect)
-        {
 
-        }
+        public Door(Rectangle rect) : base(rect) {}
 
         public override void Reset()
         {

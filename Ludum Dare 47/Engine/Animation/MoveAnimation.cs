@@ -10,30 +10,30 @@ namespace EG2DCS.Engine.Animation
 {
     public class MoveAnimation : BaseAnimation
     {
-        private Vector2 step;
-        private int timer = 0;
-        private int time;
+        private Vector2 _step;
+        private int _timer;
+        private int _time;
 
-        private Action onComplete;
+        private Action _onComplete;
 
         public MoveAnimation(Vector2 from, Vector2 to, int time, Action onComplete)
         {
-            step = (from - to) / time;
-            this.time = time;
-            this.onComplete = onComplete;
+            _step = (from - to) / time;
+            this._time = time;
+            this._onComplete = onComplete;
         }
 
         public override void Update(Animator animator)
         {
-            animator.rectangle.X += (int)step.X;
-            animator.rectangle.Y += (int)step.Y;
+            animator.Rectangle.X += (int)_step.X;
+            animator.Rectangle.Y += (int)_step.Y;
 
-            this.timer++;
+            this._timer++;
 
-            if (timer == time)
+            if (_timer == _time)
             {
-                complete = true;
-                onComplete.Invoke();
+                _complete = true;
+                _onComplete.Invoke();
             }
         }
     }

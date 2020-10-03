@@ -11,7 +11,7 @@ namespace Ludum_Dare_47
     /// </summary>
     public class Game1 : Game
     {
-        ScreenManager ScreenManager;
+        private ScreenManager _screenManager;
         public Game1()
         {
             Universal.Graphics = new GraphicsDeviceManager(this);
@@ -51,7 +51,7 @@ namespace Ludum_Dare_47
             Textures.Load();
             Sounds.Load();
             Fonts.Load();
-            ScreenManager = new ScreenManager();
+            _screenManager = new ScreenManager();
             //Add screens here
             ScreenManager.AddScreen(new GameScreen());
 
@@ -76,7 +76,7 @@ namespace Ludum_Dare_47
             base.Update(gameTime);
             Universal.WindowFocused = this.IsActive;
             Universal.GameTime = gameTime;
-            ScreenManager.Update();
+            _screenManager.Update();
             Input.Update();
         }
 
@@ -89,7 +89,7 @@ namespace Ludum_Dare_47
             Universal.Graphics.GraphicsDevice.SetRenderTarget(Universal.BackBuffer);
             Universal.Graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
             base.Draw(gameTime);
-            ScreenManager.Draw();
+            _screenManager.Draw();
             Universal.Graphics.GraphicsDevice.SetRenderTarget(null);
             Universal.SpriteBatch.Begin();
             Universal.SpriteBatch.Draw(Universal.BackBuffer, new Rectangle(0, 0, Universal.Graphics.GraphicsDevice.Viewport.Width, Universal.Graphics.GraphicsDevice.Viewport.Height), new Color(255, 255, 255));

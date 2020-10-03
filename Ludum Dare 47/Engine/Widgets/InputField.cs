@@ -12,82 +12,63 @@ namespace EG2DCS.Engine.Widgets
 {
     public class InputField : Widget, IFocusable
     {
-        private string placeholderText;
-        private string text;
-        private Color textColor;
-        private Color selectedColor;
+        private string _placeholderText;
+        private string _text;
+        private Color _textColor;
+        private Color _selectedColor;
 
-        private bool selected = false;
+        private bool _selected = false;
 
         public InputField(int x, int y, int width, int height, string text) : this(x, y, width, height, text,
             new Color(Universal.rnd.Next(256), Universal.rnd.Next(256), Universal.rnd.Next(256), 255),
             new Color(Universal.rnd.Next(256), Universal.rnd.Next(256), Universal.rnd.Next(256), 255))
-        {
-        }
+        {}
 
         public InputField(int x, int y, int width, int height, string text, Color textColor) : this(x, y, width, height, text, textColor, textColor)
-        {
-        }
+        {}
 
         public InputField(int x, int y, int width, int height, string text, Color textColor, Color selectedColor) : base(x, y, width, height)
         {
-            this.text = text;
-            this.textColor = textColor;
-            this.selectedColor = selectedColor;
-        }
-
-        public override void Update()
-        {
-            base.Update();
+            _text = text;
+            _textColor = textColor;
+            _selectedColor = selectedColor;
         }
 
         public override void Draw()
         {
             base.Draw();
-            if (selected)
-                Universal.SpriteBatch.Draw(Textures.Null, rectangle, selectedColor);
-            Universal.SpriteBatch.DrawString(Fonts.Arial_12, text.Length == 0 ? placeholderText : text, new Vector2(rectangle.X, rectangle.Y), textColor);
+            if (_selected)
+                Universal.SpriteBatch.Draw(Textures.Null, Rectangle, _selectedColor);
+            Universal.SpriteBatch.DrawString(Fonts.Arial_12, _text.Length == 0 ? _placeholderText : _text, new Vector2(Rectangle.X, Rectangle.Y), _textColor);
         }
 
         public override void Remove()
-        {
-        }
+        {}
 
-        public void onFocus()
-        {
-            selected = true;
-        }
+        public void OnFocus() => _selected = true;
 
-        public void onUnFocus()
-        {
-            selected = false;
-        }
+        public void OnUnFocus() => _selected = false;
+        
 
 
-        public bool onKeyPress(Keys key)
+        public bool OnKeyPress(Keys key)
         {
             if (key >= Keys.A && key <= Keys.Z)
             {
                 if (Input.KeyDown(Keys.LeftShift) || Input.KeyDown(Keys.RightShift))
-                    text += key.ToString();
+                    _text += key.ToString();
                 else
-                    text += key.ToString().ToLower();
+                    _text += key.ToString().ToLower();
             }
-            else if (key == Keys.Back && text.Length > 0)
+            else if (key == Keys.Back && _text.Length > 0)
             {
-                text = text.Substring(0, text.Length - 1);
+                _text = _text.Substring(0, _text.Length - 1);
             }
             return true;
         }
 
-        public bool onKeyRelease(Keys key)
-        {
-            return true;
-        }
+        public bool OnKeyRelease(Keys key) => true;
 
-        public void setPlaceholderText(string text)
-        {
-            this.placeholderText = text;
-        }
+        public void SetPlaceholderText(string text) =>_placeholderText = text;
     }
 }

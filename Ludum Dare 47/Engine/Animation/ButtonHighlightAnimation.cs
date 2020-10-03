@@ -10,30 +10,30 @@ namespace EG2DCS.Engine.Animation
 {
     public class ButtonHighlightAnimation : BaseAnimation
     {
-        private float step;
-        private int timer = 0;
-        private int time;
+        private float _step;
+        private int _timer;
+        private int _time;
 
         public ButtonHighlightAnimation(Animator animator, int time)
         {
-            step = animator.rectangle.Width / (float)time;
-            this.time = time;
+            _step = animator.Rectangle.Width / (float)time;
+            this._time = time;
         }
 
         public override void Update(Animator animator)
         {
-            if (animator.GetType() != typeof(Button) || complete)
+            if (animator.GetType() != typeof(Button) || _complete)
                 return;
 
             Button button = (Button)animator;
 
-            button.highlightWidth = Math.Min(button.highlightWidth + step, button.rectangle.Width);
+            button.HighlightWidth = Math.Min(button.HighlightWidth + _step, button.Rectangle.Width);
 
-            this.timer++;
+            this._timer++;
 
-            if (timer == time)
+            if (_timer == _time)
             {
-                complete = true;
+                _complete = true;
             }
         }
     }

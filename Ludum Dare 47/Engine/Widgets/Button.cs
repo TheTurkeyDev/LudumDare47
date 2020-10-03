@@ -11,12 +11,12 @@ namespace EG2DCS.Engine.Widgets
 {
     public class Button : Widget
     {
-        private string text;
+        private string _text;
 
-        private Color highlightColor;
-        public float highlightWidth = 0;
+        private Color _highlightColor;
+        public float HighlightWidth = 0;
 
-        private ButtonHighlightAnimation currentAnim;
+        private ButtonHighlightAnimation _currentAnim;
 
         public Button(int x, int y, int width, int height, string text) : this(x, y, width, height, text, Color.White, new Color(Universal.rnd.Next(256), Universal.rnd.Next(256), Universal.rnd.Next(256), 255))
         {
@@ -24,37 +24,29 @@ namespace EG2DCS.Engine.Widgets
 
         public Button(int x, int y, int width, int height, string text, Color textColor, Color highlightColor) : base(x, y, width, height)
         {
-            this.text = text;
-            this.highlightColor = highlightColor;
-        }
-
-        public override void Update()
-        {
-            base.Update();
+            _text = text;
+            _highlightColor = highlightColor;
         }
 
         public override void Draw()
         {
             base.Draw();
-            Rectangle highlightRect = new Rectangle(rectangle.Location, rectangle.Size);
-            highlightRect.Width = (int)highlightWidth;
-            Universal.SpriteBatch.Draw(Textures.Null, highlightRect, highlightColor);
-            Universal.SpriteBatch.DrawString(Fonts.Arial_12, text, new Vector2(rectangle.X, rectangle.Y), Color.White);
+            Rectangle highlightRect = new Rectangle(Rectangle.Location, Rectangle.Size);
+            highlightRect.Width = (int)HighlightWidth;
+            Universal.SpriteBatch.Draw(Textures.Null, highlightRect, _highlightColor);
+            Universal.SpriteBatch.DrawString(Fonts.Arial_12, _text, new Vector2(Rectangle.X, Rectangle.Y), Color.White);
         }
 
         public override void Remove()
         {
         }
 
-        public override void OnHover()
-        {
-            base.AddAnimation(currentAnim = new ButtonHighlightAnimation(this, 20));
-        }
+        public override void OnHover() =>AddAnimation(_currentAnim = new ButtonHighlightAnimation(this, 20));
 
         public override void OnUnHover()
         {
-            highlightWidth = 0;
-            currentAnim.SetComplete();
+            HighlightWidth = 0;
+            _currentAnim.SetComplete();
         }
 
         public override void OnClick(bool lmb)

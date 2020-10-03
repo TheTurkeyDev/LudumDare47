@@ -10,46 +10,45 @@ namespace Ludum_Dare_47.Engine.Entities
 {
     class Button : Entity
     {
-        private bool Pressed = false;
-        private bool wallMounted = false;
-        private Task task;
+        private bool _pressed;
+        private bool _wallMounted = false;
+        private Task _task;
 
         public Button(Rectangle rect, bool wallMounted, Task task) : base(rect)
         {
-            this.task = task;
-            this.wallMounted = wallMounted;
+            _task = task;
+            _wallMounted = wallMounted;
             if (wallMounted)
                 Gravity = false;
-
         }
 
         public override void Reset()
         {
             base.Reset();
-            Pressed = false;
-            task.Complete = false;
+            _pressed = false;
+            _task.Complete = false;
         }
 
         public override void Draw(int offsetX, int offsetY)
         {
-            Universal.SpriteBatch.Draw(Textures.Null, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), Pressed ? Color.DarkRed : Color.Red);
+            Universal.SpriteBatch.Draw(Textures.Null, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), _pressed ? Color.DarkRed : Color.Red);
         }
 
         public override bool OnCollide(Entity ent)
         {
-            if (ent is Player && !Pressed)
+            if (ent is Player && !_pressed)
             {
-                if (wallMounted)
+                if (_wallMounted)
                 {
-                    position.Width /= 2;
+                    _position.Width /= 2;
                 }
                 else
                 {
-                    position.Height /= 2;
-                    position.Y += position.Height;
+                    _position.Height /= 2;
+                    _position.Y += Position.Height;
                 }
-                Pressed = true;
-                task.Complete = true;
+                _pressed = true;
+                _task.Complete = true;
             }
             return base.OnCollide(ent);
         }

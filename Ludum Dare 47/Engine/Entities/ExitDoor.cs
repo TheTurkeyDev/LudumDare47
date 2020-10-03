@@ -10,15 +10,10 @@ namespace Ludum_Dare_47.Engine.Entities
 {
     class ExitDoor : Entity
     {
-        private World world;
+        private World _world;
         public ExitDoor(Rectangle rect, World world) : base(rect)
         {
-            this.world = world;
-        }
-
-        public override void Reset()
-        {
-            base.Reset();
+            _world = world;
         }
 
         public override void Draw(int offsetX, int offsetY)
@@ -31,7 +26,7 @@ namespace Ludum_Dare_47.Engine.Entities
             bool complete = true;
             if (ent is Player)
             {
-                foreach (Task task in world.Tasks)
+                foreach (Task task in _world.Tasks)
                 {
                     if (!task.Complete)
                     {
@@ -43,7 +38,7 @@ namespace Ludum_Dare_47.Engine.Entities
                 if (complete)
                 {
                     Console.WriteLine("Here");
-                    world.Reset();
+                    _world.Reset();
                 }
             }
 

@@ -9,12 +9,12 @@ namespace EG2DCS.Engine.Widgets
 {
     public interface IFocusable
     {
-        void onFocus();
+        void OnFocus();
 
-        void onUnFocus();
+        void OnUnFocus();
 
-        bool onKeyPress(Keys key);
+        bool OnKeyPress(Keys key);
 
-        bool onKeyRelease(Keys key);
+        bool OnKeyRelease(Keys key);
     }
 }

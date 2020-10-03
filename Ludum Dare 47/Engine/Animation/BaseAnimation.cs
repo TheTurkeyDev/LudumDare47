@@ -9,23 +9,14 @@ namespace EG2DCS.Engine.Animation
 {
     public abstract class BaseAnimation
     {
-        protected bool complete = false;
+        protected bool _complete = false;
 
         public abstract void Update(Animator animator);
 
-        public virtual void Draw(Animator animator)
-        {
+        public virtual void Draw(Animator animator) { }
 
-        }
+        public virtual bool IsComplete() => _complete;
 
-        public virtual bool IsComplete()
-        {
-            return complete;
-        }
-
-        public void SetComplete()
-        {
-            complete = true;
-        }
+        public void SetComplete() => _complete = true;
     }
 }

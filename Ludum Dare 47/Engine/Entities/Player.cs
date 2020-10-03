@@ -14,9 +14,7 @@ namespace Ludum_Dare_47.Engine.Entities
         public Inventory Inventory { get; private set; } = new Inventory();
 
         public Player() : base(new Rectangle(100, 1300, 64, 64))
-        {
-
-        }
+        {}
 
         public override void Reset()
         {
@@ -26,12 +24,12 @@ namespace Ludum_Dare_47.Engine.Entities
 
         public void Jump()
         {
-            if (!InAir() || Inventory.HasItem(Item.DOUBLE_JUMP))
+            if (!InAir || Inventory.HasItem(Item.DOUBLE_JUMP))
             {
-                if (InAir())
+                if (InAir)
                     Inventory.RemoveItem(Item.DOUBLE_JUMP);
-                velocity.Y = -15;
-                inAir = true;
+                _velocity.Y = -15;
+                InAir = true;
             }
         }
 

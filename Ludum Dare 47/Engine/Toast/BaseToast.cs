@@ -7,32 +7,29 @@ namespace EG2DCS.Engine.Toast
 {
     public class BaseToast : Animator
     {
-        private Color color;
+        private Color _color;
 
-        private int timer = 0;
-        private bool delay = false;
+        private int _timer = 0;
+        private bool _delay = false;
 
-        private Vector2 from;
-        private Vector2 to;
+        private Vector2 _from;
+        private Vector2 _to;
 
-        private bool complete = false;
+        private bool _complete = false;
 
-        public BaseToast() : base(new Rectangle())
-        {
-
-        }
+        public BaseToast() : base(new Rectangle()) {}
 
         public virtual void Start()
         {
-            color = new Color(Universal.rnd.Next(256), Universal.rnd.Next(256), Universal.rnd.Next(256), 255);
+            _color = new Color(Universal.rnd.Next(256), Universal.rnd.Next(256), Universal.rnd.Next(256), 255);
 
-            from = new Vector2((Universal.GameSize.X / 2) - 250, Universal.GameSize.Y + 100);
-            to = new Vector2(from.X, from.Y - 300);
+            _from = new Vector2((Universal.GameSize.X / 2) - 250, Universal.GameSize.Y + 100);
+            _to = new Vector2(_from.X, _from.Y - 300);
 
-            rectangle = new Rectangle((int)from.X, (int)from.Y, 500, 100);
-            base.AddAnimation(new MoveAnimation(to, from, 120, () =>
+            Rectangle = new Rectangle((int)_from.X, (int)_from.Y, 500, 100);
+            base.AddAnimation(new MoveAnimation(_to, _from, 120, () =>
             {
-                delay = true;
+                _delay = true;
             }));
         }
 
@@ -40,37 +37,37 @@ namespace EG2DCS.Engine.Toast
         {
             base.Update();
 
-            if (delay)
+            if (_delay)
             {
-                if (timer == 240)
+                if (_timer == 240)
                 {
-                    delay = false;
-                    base.AddAnimation(new MoveAnimation(from, to, 120, () =>
+                    _delay = false;
+                    base.AddAnimation(new MoveAnimation(_from, _to, 120, () =>
                     {
-                        complete = true;
+                        _complete = true;
                     }));
                 }
 
-                timer++;
+                _timer++;
             }
         }
 
         public virtual void Draw()
         {
-            if (complete)
+            if (_complete)
                 return;
 
-            Universal.SpriteBatch.Draw(Textures.Null, rectangle, color);
+            Universal.SpriteBatch.Draw(Textures.Null, Rectangle, _color);
         }
 
         public virtual void Remove()
         {
-            complete = true;
+            _complete = true;
         }
 
         public bool IsComplete()
         {
-            return this.complete;
+            return this._complete;
         }
     }
 }

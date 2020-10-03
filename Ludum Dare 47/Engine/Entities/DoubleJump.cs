@@ -11,10 +11,7 @@ namespace Ludum_Dare_47.Engine.Entities
 {
     class DoubleJump : Entity
     {
-        public DoubleJump(Rectangle rect) : base(rect)
-        {
-
-        }
+        public DoubleJump(Rectangle rect) : base(rect) {}
 
         public override void Draw(int offsetX, int offsetY)
         {

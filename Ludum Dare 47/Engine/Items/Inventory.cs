@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Game1.Engine.Items;
 
 namespace Ludum_Dare_47.Engine.Items
 {
     class Inventory
     {
-        public List<ItemStack> Items { get; private set; } = new List<ItemStack>();
+        public List<ItemStack> Items { get; } = new List<ItemStack>();
 
         public bool HasItem(Item item)
         {

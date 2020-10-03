@@ -20,8 +20,8 @@ namespace EG2DCS.Engine.Screen_Manager
         public bool GrabFocus;
         public bool Overridable = true;
 
-        public IFocusable focusedWidget = null;
-        public KeyListener cachedListner = null;
+        public IFocusable FocusedWidget;
+        public KeyListener CachedListner;
 
         private List<BaseOverlay> Overlays { get; } = new List<BaseOverlay>();
         private List<BaseToast> Toasts { get; } = new List<BaseToast>();
@@ -40,12 +40,12 @@ namespace EG2DCS.Engine.Screen_Manager
             Point point = mouseState.Position;
             foreach (Widget widget in Widgets)
             {
-                if (widget.rectangle.Contains(point) && !Hovered.Contains(widget))
+                if (widget.Rectangle.Contains(point) && !Hovered.Contains(widget))
                 {
                     widget.OnHover();
                     Hovered.Add(widget);
                 }
-                else if (!widget.rectangle.Contains(point) && Hovered.Contains(widget))
+                else if (!widget.Rectangle.Contains(point) && Hovered.Contains(widget))
                 {
                     widget.OnUnHover();
                     Hovered.Remove(widget);
@@ -124,32 +124,32 @@ namespace EG2DCS.Engine.Screen_Manager
             Point point = new Point(x, y);
             foreach (Widget widget in Widgets)
             {
-                if (widget.rectangle.Contains(point))
+                if (widget.Rectangle.Contains(point))
                 {
                     if (widget is IFocusable)
                     {
                         focusChange = true;
-                        if (focusedWidget != widget)
+                        if (FocusedWidget != widget)
                         {
-                            if (focusedWidget != null)
-                                focusedWidget.onUnFocus();
-                            focusedWidget = (IFocusable)widget;
-                            cachedListner = Input.getCurrentKeyListener();
+                            if (FocusedWidget != null)
+                                FocusedWidget.OnUnFocus();
+                            FocusedWidget = (IFocusable)widget;
+                            CachedListner = Input.getCurrentKeyListener();
                             Input.setCurrentKeyListener(this);
 
-                            focusedWidget.onFocus();
+                            FocusedWidget.OnFocus();
                         }
                     }
                     widget.OnClick(left);
                 }
             }
 
-            if (!focusChange && focusedWidget != null)
+            if (!focusChange && FocusedWidget != null)
             {
-                focusedWidget.onUnFocus();
-                focusedWidget = null;
-                Input.setCurrentKeyListener(cachedListner);
-                cachedListner = null;
+                FocusedWidget.OnUnFocus();
+                FocusedWidget = null;
+                Input.setCurrentKeyListener(CachedListner);
+                CachedListner = null;
             }
         }
 
@@ -186,15 +186,15 @@ namespace EG2DCS.Engine.Screen_Manager
 
         public virtual bool onKeyPress(Keys key)
         {
-            if (focusedWidget != null)
-                return focusedWidget.onKeyPress(key);
+            if (FocusedWidget != null)
+                return FocusedWidget.OnKeyPress(key);
             return false;
         }
 
         public virtual bool onKeyRelease(Keys key)
         {
-            if (focusedWidget != null)
-                return focusedWidget.onKeyRelease(key);
+            if (FocusedWidget != null)
+                return FocusedWidget.OnKeyRelease(key);
             return false;
         }
     }

@@ -11,68 +11,50 @@ namespace EG2DCS.Engine.Widgets
 {
     public class Widget : Animator
     {
-        private Color backgroundColor;
-
-        private int borderWidth = 0;
-        private Color borderColor;
+        private Color _backgroundColor;
+        private int _borderWidth = 0;
+        private Color _borderColor;
 
         public Widget(int x, int y, int width, int height) : base(new Rectangle(x, y, width, height))
         {
-            backgroundColor = new Color(Universal.rnd.Next(256), Universal.rnd.Next(256), Universal.rnd.Next(256), 255);
-        }
-
-        public override void Update()
-        {
-            base.Update();
+            _backgroundColor = new Color(Universal.rnd.Next(256), Universal.rnd.Next(256), Universal.rnd.Next(256), 255);
         }
 
         public virtual void Draw()
         {
-            if (borderWidth > 0)
+            if (_borderWidth > 0)
             {
-                Rectangle borderRect = new Rectangle(rectangle.Location, rectangle.Size);
-                borderRect.Inflate(borderWidth, borderWidth);
-                Universal.SpriteBatch.Draw(Textures.Null, borderRect, borderColor);
+                Rectangle borderRect = new Rectangle(Rectangle.Location, Rectangle.Size);
+                borderRect.Inflate(_borderWidth, _borderWidth);
+                Universal.SpriteBatch.Draw(Textures.Null, borderRect, _borderColor);
             }
-            Universal.SpriteBatch.Draw(Textures.Null, rectangle, backgroundColor);
+            Universal.SpriteBatch.Draw(Textures.Null, Rectangle, _backgroundColor);
         }
 
-        public virtual void Remove()
-        {
-        }
+        public virtual void Remove() {}
 
-        public virtual void OnHover()
-        {
-        }
+        public virtual void OnHover() {}
 
-        public virtual void OnUnHover()
-        {
-        }
+        public virtual void OnUnHover() {}
 
-        public virtual void OnClick(bool lmb)
-        {
-        }
+        public virtual void OnClick(bool lmb) {}
 
-        public Color setBackgroundColor(Color color)
+        public Color SetBackgroundColor(Color color)
         {
-            Color old = backgroundColor;
-            backgroundColor = color;
+            Color old = _backgroundColor;
+            _backgroundColor = color;
             return old;
         }
 
-        public void setBorder(int width, Color color)
+        public void SetBorder(int width, Color color)
         {
-            setBorderWidth(width);
-            setBorderColor(color);
+            SetBorderWidth(width);
+            SetBorderColor(color);
         }
 
-        public void setBorderWidth(int width)
-        {
-            this.borderWidth = width;
-        }
-        public void setBorderColor(Color color)
-        {
-            this.borderColor = color;
-        }
+        public void SetBorderWidth(int width) => _borderWidth = width;
+        
+
+        public void SetBorderColor(Color color) => _borderColor = color;
     }
 }
