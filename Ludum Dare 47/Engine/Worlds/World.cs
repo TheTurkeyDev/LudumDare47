@@ -2,6 +2,7 @@
 using Ludum_Dare_47.Engine.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,62 +11,53 @@ using System.Threading.Tasks;
 
 namespace Ludum_Dare_47.Engine.Worlds
 {
-    class World
+    public class World
     {
+        private static Vector2 SideBuffer = new Vector2(100, 150);
+
         public int TimeLeft { get; private set; } = 100 * 60;
 
         public List<Task> Tasks { get; } = new List<Task>();
 
-        private List<Rectangle> walls = new List<Rectangle>();
+        public string Name { get; set; }
 
-        private Vector2 WorldMax = new Vector2(1400, 1400);
-        private Vector2 SideBuffer = new Vector2(100, 150);
+        public List<Wall> Walls { get; set; }
+        public List<Entity> Entities { get; set; } = new List<Entity>();
+        [JsonConverter(typeof(CustomVector2Converter))]
+        public Vector2 WorldMax { get; set; } = new Vector2(1400, 1400);
 
-        private List<Entity> ents = new List<Entity>();
+
         public Player player;
 
         public World()
         {
-            walls.Add(new Rectangle(0, 0, 20, (int)WorldMax.Y));
-            walls.Add(new Rectangle(0, (int)WorldMax.Y, (int)WorldMax.X, 20));
-            walls.Add(new Rectangle((int)WorldMax.X, 0, 20, (int)WorldMax.Y));
-            walls.Add(new Rectangle(0, 0, (int)WorldMax.X, 20));
-            walls.Add(new Rectangle(500, 1250, 1000, 22));
-
             player = new Player();
 
-            ents.Add(new DoubleJump(new Rectangle(200, 1350, 16, 16)));
-            Key key = new Key(new Rectangle(300, 1300, 16, 16));
-            key.Gravity = false;
-            ents.Add(key);
-            ents.Add(new Door(new Rectangle(600, 1272, 64, 128)));
-            ents.Add(new Door(new Rectangle(1100, 1272, 64, 128)));
-            key = new Key(new Rectangle(700, 1300, 16, 16));
-            key.Gravity = false;
-            ents.Add(key);
+            //Task task = new Task();
+            //Entities.Add(new Button(new Rectangle(900, 1350, 64, 16), false, task));
+            //Tasks.Add(task);
+            //task = new Task();
+            //Entities.Add(new Button(new Rectangle(20, 1300, 16, 64), true, task));
+            //Tasks.Add(task);
+        }
 
-            Task task = new Task();
-            ents.Add(new Button(new Rectangle(900, 1350, 64, 16), false, task));
-            Tasks.Add(task);
-            task = new Task();
-            ents.Add(new Button(new Rectangle(20, 1300, 16, 64), true, task));
-            Tasks.Add(task);
-
-            ents.Add(new ExitDoor(new Rectangle(1300, 1272, 64, 128), this));
-
+        public void Setup()
+        {
+            foreach (Entity ent in Entities)
+                ent.Setup(this);
         }
 
         public void Reset()
         {
             TimeLeft = 100 * 60;
-            foreach (Entity ent in ents)
+            foreach (Entity ent in Entities)
                 ent.Reset();
             player.Reset();
         }
 
         public void Update()
         {
-            foreach (Entity ent in ents)
+            foreach (Entity ent in Entities)
             {
                 if (!ent.IsDead)
                 {
@@ -93,15 +85,15 @@ namespace Ludum_Dare_47.Engine.Worlds
 
             Universal.SpriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
-            foreach (Rectangle wall in walls)
+            foreach (Wall wall in Walls)
             {
-                Rectangle rectMoved = new Rectangle(wall.Location, wall.Size);
+                Rectangle rectMoved = new Rectangle(wall.Rectangle.Location, wall.Rectangle.Size);
                 rectMoved.X += offsetX;
                 rectMoved.Y += offsetY;
-                Universal.SpriteBatch.Draw(Textures.Null, rectMoved, Color.Black);
+                Universal.SpriteBatch.Draw(Textures.Null, rectMoved, wall.Color);
             }
 
-            foreach (Entity ent in ents)
+            foreach (Entity ent in Entities)
                 if (!ent.IsDead)
                     ent.Draw(offsetX, offsetY);
             player.Draw(offsetX, offsetY);
@@ -119,15 +111,16 @@ namespace Ludum_Dare_47.Engine.Worlds
             player.Jump();
         }
 
-        public void MoveEntity(Entity ent, float xMov, float yMov)
+        public bool MoveEntity(Entity ent, float xMov, float yMov)
         {
             Rectangle temp = new Rectangle((int)(ent.Position.X + xMov), ent.Position.Y, ent.Position.Width, ent.Position.Height);
 
+            bool moved = false;
             bool valid = true;
 
-            foreach (Rectangle wall in walls)
+            foreach (Wall wall in Walls)
             {
-                if (temp.Intersects(wall))
+                if (temp.Intersects(wall.Rectangle))
                 {
                     valid = false;
                     break;
@@ -136,7 +129,7 @@ namespace Ludum_Dare_47.Engine.Worlds
 
             if (valid)
             {
-                foreach (Entity entCheck in ents)
+                foreach (Entity entCheck in Entities)
                 {
                     if (!entCheck.IsDead && temp.Intersects(entCheck.Position) && !entCheck.OnCollide(ent))
                     {
@@ -148,6 +141,7 @@ namespace Ludum_Dare_47.Engine.Worlds
 
             if (valid)
             {
+                moved = true;
                 ent.MoveEntity((int)xMov, 0);
             }
 
@@ -155,9 +149,9 @@ namespace Ludum_Dare_47.Engine.Worlds
             temp = new Rectangle(ent.Position.X, (int)(ent.Position.Y + yMov), ent.Position.Width, ent.Position.Height);
             valid = true;
 
-            foreach (Rectangle wall in walls)
+            foreach (Wall wall in Walls)
             {
-                if (temp.Intersects(wall))
+                if (temp.Intersects(wall.Rectangle))
                 {
                     valid = false;
                     ent.SetOnGround();
@@ -167,7 +161,7 @@ namespace Ludum_Dare_47.Engine.Worlds
 
             if (valid)
             {
-                foreach (Entity entCheck in ents)
+                foreach (Entity entCheck in Entities)
                 {
                     if (!entCheck.IsDead && temp.Intersects(entCheck.Position) && !entCheck.OnCollide(ent))
                     {
@@ -181,6 +175,8 @@ namespace Ludum_Dare_47.Engine.Worlds
             {
                 ent.MoveEntity(0, (int)yMov);
             }
+
+            return moved;
         }
     }
 }

@@ -9,12 +9,16 @@ namespace EG2DCS.Engine.Globals
 {
     class Sounds
     {
-        //public static SoundEffect Null;
+        public static SoundEffect Jump;
+        public static SoundEffect KeyPickup;
+        public static SoundEffect Powerup;
+        public static SoundEffect Step;
         public static void Load()
         {
-            //Null = Globals.Content.Load<SoundEffect>("Null");
-
+            Jump = Universal.Content.Load<SoundEffect>("sounds/jump");
+            KeyPickup = Universal.Content.Load<SoundEffect>("sounds/key_pickup");
+            Step = Universal.Content.Load<SoundEffect>("sounds/step");
+            Powerup = Universal.Content.Load<SoundEffect>("sounds/powerup");
         }
-
     }
 }

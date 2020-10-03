@@ -11,6 +11,8 @@ namespace Ludum_Dare_47.Engine.Entities
 {
     class Door : Entity
     {
+        public override string EntId { get; } = "door";
+
         private bool Locked { get; set; } = true;
         public Door(Rectangle rect) : base(rect)
         {
@@ -25,7 +27,11 @@ namespace Ludum_Dare_47.Engine.Entities
 
         public override void Draw(int offsetX, int offsetY)
         {
-            Universal.SpriteBatch.Draw(Textures.Null, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), Locked ? Color.Brown : Color.RosyBrown);
+            Rectangle sourceRect = new Rectangle(0, 0, 64, 128);
+            if (!Locked)
+                sourceRect.X = 64;
+
+            Universal.SpriteBatch.Draw(Textures.Door, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), sourceRect, Color.White);
         }
 
         public override bool OnCollide(Entity ent)

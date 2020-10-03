@@ -9,30 +9,30 @@ namespace EG2DCS.Engine.Animation
 {
     public class Animator
     {
-        private List<BaseAnimation> animations = new List<BaseAnimation>();
-        
-        public Rectangle rectangle;
+        private List<BaseAnimation> Animations { get; set; } = new List<BaseAnimation>();
+
+        public Rectangle Rectangle;
 
         public Animator(Rectangle rectangle)
         {
-            this.rectangle = rectangle;
+            this.Rectangle = rectangle;
         }
 
         public virtual void Update()
         {
-            for (int i = animations.Count - 1; i >= 0; i--)
+            for (int i = Animations.Count - 1; i >= 0; i--)
             {
-                animations[i].Update(this);
-                if (animations[i].IsComplete())
+                Animations[i].Update(this);
+                if (Animations[i].Complete)
                 {
-                    animations.RemoveAt(i);
+                    Animations.RemoveAt(i);
                 }
             }
         }
 
         public void AddAnimation(BaseAnimation animation)
         {
-            animations.Add(animation);
+            Animations.Add(animation);
         }
     }
 }

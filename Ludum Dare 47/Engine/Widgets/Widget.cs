@@ -30,11 +30,11 @@ namespace EG2DCS.Engine.Widgets
         {
             if (borderWidth > 0)
             {
-                Rectangle borderRect = new Rectangle(rectangle.Location, rectangle.Size);
+                Rectangle borderRect = new Rectangle(Rectangle.Location, Rectangle.Size);
                 borderRect.Inflate(borderWidth, borderWidth);
                 Universal.SpriteBatch.Draw(Textures.Null, borderRect, borderColor);
             }
-            Universal.SpriteBatch.Draw(Textures.Null, rectangle, backgroundColor);
+            Universal.SpriteBatch.Draw(Textures.Null, Rectangle, backgroundColor);
         }
 
         public virtual void Remove()

@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using EG2DCS.Engine.Globals;
+using Ludum_Dare_47.Engine.Worlds;
+using Microsoft.Xna.Framework;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +10,13 @@ using System.Threading.Tasks;
 
 namespace Ludum_Dare_47.Engine.Entities
 {
-    class Entity
+    [JsonConverter(typeof(CustomEntityConverter))]
+    public class Entity
     {
+        public virtual string EntId { get; } = "entity";
+
+        public World World { get; set; }
+
         protected Vector2 velocity = new Vector2(0, 0);
         public Vector2 Velocity { get => velocity; }
 
@@ -28,6 +36,11 @@ namespace Ludum_Dare_47.Engine.Entities
             this.initPosition = new Rectangle(position.Location, position.Size);
         }
 
+        public virtual void Setup(World World)
+        {
+            this.World = World;
+        }
+
         public virtual void Reset()
         {
             this.position = new Rectangle(initPosition.Location, initPosition.Size);
@@ -39,12 +52,12 @@ namespace Ludum_Dare_47.Engine.Entities
         public virtual void Update()
         {
             if (Gravity)
-                velocity.Y += inAir ? 0.5f : 0.1f;
+                velocity.Y += inAir || velocity.Y > 0 ? 0.5f : 0.1f;
         }
 
         public virtual void Draw(int offsetX, int offsetY)
         {
-
+            Universal.SpriteBatch.Draw(Textures.Null, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), Color.Pink);
         }
 
         public void MoveEntity(int xMov, int yMov)

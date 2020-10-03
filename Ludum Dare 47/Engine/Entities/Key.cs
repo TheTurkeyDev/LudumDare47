@@ -11,6 +11,8 @@ namespace Ludum_Dare_47.Engine.Entities
 {
     class Key : Entity
     {
+        public override string EntId { get; } = "key";
+
         public Key(Rectangle rect) : base(rect)
         {
 
@@ -18,7 +20,7 @@ namespace Ludum_Dare_47.Engine.Entities
 
         public override void Draw(int offsetX, int offsetY)
         {
-            Universal.SpriteBatch.Draw(Textures.Null, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), Color.Yellow);
+            Universal.SpriteBatch.Draw(Textures.Key, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), Color.White);
         }
 
         public override bool OnCollide(Entity ent)
@@ -27,6 +29,7 @@ namespace Ludum_Dare_47.Engine.Entities
             {
                 ((Player)ent).Inventory.AddItem(Item.KEY);
                 IsDead = true;
+                Sounds.KeyPickup.Play();
             }
             return base.OnCollide(ent);
         }

@@ -10,13 +10,14 @@ namespace EG2DCS.Engine.Screen_Manager
 {
     class GameScreen : BaseScreen
     {
-        private World CurrentWorld { get; set; } = new World();
+        private World CurrentWorld { get; set; }
 
         public GameScreen()
         {
             Name = "Game";
             State = ScreenState.Active;
             Input.setCurrentKeyListener(this);
+            CurrentWorld = WorldManager.Worlds[0];
         }
         public override void HandleInput()
         {
@@ -25,11 +26,19 @@ namespace EG2DCS.Engine.Screen_Manager
             if (base.focusedWidget != null)
                 return;
 
+            CurrentWorld.player.Moving = false;
+
             if (Input.KeyDown(Keys.A))
-                CurrentWorld.MoveEntity(CurrentWorld.player, -4, 0);
+            {
+                CurrentWorld.player.Moving = CurrentWorld.MoveEntity(CurrentWorld.player, -4, 0);
+                CurrentWorld.player.FacingRight = false;
+            }
 
             if (Input.KeyDown(Keys.D))
-                CurrentWorld.MoveEntity(CurrentWorld.player, 4, 0);
+            {
+                CurrentWorld.player.Moving = CurrentWorld.MoveEntity(CurrentWorld.player, 4, 0);
+                CurrentWorld.player.FacingRight = true;
+            }
 
             if (Input.KeyPressed(Keys.Escape))
             {
@@ -73,7 +82,7 @@ namespace EG2DCS.Engine.Screen_Manager
             for (int i = 0; i < stacks.Count; i++)
             {
                 ItemStack stack = stacks[i];
-                Universal.SpriteBatch.Draw(Textures.Null, new Rectangle(120 + (80 * i), (int)Universal.GameSize.Y - 80, 64, 64), Color.Yellow);
+                Universal.SpriteBatch.Draw(stack.Item.Texture, new Rectangle(120 + (80 * i), (int)Universal.GameSize.Y - 80, 64, 64), Color.White);
                 string[] parts = stack.Item.Name.Split(' ');
                 parts[parts.Length - 1] += " (" + stack.Count + ")";
                 for (int j = 0; j < parts.Length; j++)

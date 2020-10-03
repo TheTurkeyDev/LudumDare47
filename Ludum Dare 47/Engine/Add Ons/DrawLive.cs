@@ -6,48 +6,48 @@ namespace EG2DCS.Engine.Add_Ons
 {
     class DrawLive
     {
-        public static RenderTarget2D Scren;
-        public static GraphicsDeviceManager freedraw;
-        public static SpriteBatch livedraw;
-        public static Texture2D permGFX;
+        public static RenderTarget2D Screen { get; set; }
+        public static GraphicsDeviceManager Freedraw { get; set; }
+        public static SpriteBatch Livedraw { get; set; }
+        public static Texture2D PermGFX { get; set; }
 
         public static void Send(Texture2D tex)
         {
-            freedraw = Universal.Graphics;
-            Scren = new RenderTarget2D(freedraw.GraphicsDevice, tex.Width, tex.Height);
-            freedraw.GraphicsDevice.SetRenderTarget(Scren);
-            livedraw = new SpriteBatch(freedraw.GraphicsDevice);
-            livedraw.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-            livedraw.Draw(tex, new Rectangle(0, 0, tex.Width, tex.Height), new Color(255, 255, 255));
-            livedraw.End();
+            Freedraw = Universal.Graphics;
+            Screen = new RenderTarget2D(Freedraw.GraphicsDevice, tex.Width, tex.Height);
+            Freedraw.GraphicsDevice.SetRenderTarget(Screen);
+            Livedraw = new SpriteBatch(Freedraw.GraphicsDevice);
+            Livedraw.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            Livedraw.Draw(tex, new Rectangle(0, 0, tex.Width, tex.Height), new Color(255, 255, 255));
+            Livedraw.End();
         }
 
         public static void Modify(Texture2D tex, Rectangle Drawto, Rectangle Drawfrom, Color col)
         {
-            livedraw.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-            livedraw.Draw(tex, Drawto, Drawfrom, col);
-            livedraw.End();
+            Livedraw.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
+            Livedraw.Draw(tex, Drawto, Drawfrom, col);
+            Livedraw.End();
         }
         public static Texture2D Retrieve()
         {
-            freedraw.GraphicsDevice.SetRenderTarget(null);
-            Color[] col = new Color[Scren.Width * Scren.Height - 1];
-            Scren.GetData(col);
-            permGFX = new Texture2D(Universal.Graphics.GraphicsDevice, Scren.Width, Scren.Height);
-            permGFX.SetData(col);
-            Scren.Dispose();
-            livedraw.Dispose();
-            return permGFX;
+            Freedraw.GraphicsDevice.SetRenderTarget(null);
+            Color[] col = new Color[Screen.Width * Screen.Height - 1];
+            Screen.GetData(col);
+            PermGFX = new Texture2D(Universal.Graphics.GraphicsDevice, Screen.Width, Screen.Height);
+            PermGFX.SetData(col);
+            Screen.Dispose();
+            Livedraw.Dispose();
+            return PermGFX;
         }
-        public static Texture2D Transparancy(Texture2D td2, Color col)
+        public static Texture2D Transparency(Texture2D td2, Color col)
         {
-            Color[] colo = new Color[Scren.Width * Scren.Height - 1];
+            Color[] colo = new Color[Screen.Width * Screen.Height - 1];
             td2.GetData(colo);
             for (int q = 0; q < colo.Length - 1; q++)
             {
                 if (colo[q] == col)
                 {
-                    colo[q] = Color.Transparent; 
+                    colo[q] = Color.Transparent;
                 }
             }
             td2.SetData(colo);

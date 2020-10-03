@@ -36,10 +36,10 @@ namespace EG2DCS.Engine.Widgets
         public override void Draw()
         {
             base.Draw();
-            Rectangle highlightRect = new Rectangle(rectangle.Location, rectangle.Size);
+            Rectangle highlightRect = new Rectangle(Rectangle.Location, Rectangle.Size);
             highlightRect.Width = (int)highlightWidth;
             Universal.SpriteBatch.Draw(Textures.Null, highlightRect, highlightColor);
-            Universal.SpriteBatch.DrawString(Fonts.Arial_12, text, new Vector2(rectangle.X, rectangle.Y), Color.White);
+            Universal.SpriteBatch.DrawString(Fonts.Arial_12, text, new Vector2(Rectangle.X, Rectangle.Y), Color.White);
         }
 
         public override void Remove()
@@ -54,7 +54,7 @@ namespace EG2DCS.Engine.Widgets
         public override void OnUnHover()
         {
             highlightWidth = 0;
-            currentAnim.SetComplete();
+            currentAnim.Complete = true;
         }
 
         public override void OnClick(bool lmb)

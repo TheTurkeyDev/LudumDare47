@@ -40,12 +40,12 @@ namespace EG2DCS.Engine.Screen_Manager
             Point point = mouseState.Position;
             foreach (Widget widget in Widgets)
             {
-                if (widget.rectangle.Contains(point) && !Hovered.Contains(widget))
+                if (widget.Rectangle.Contains(point) && !Hovered.Contains(widget))
                 {
                     widget.OnHover();
                     Hovered.Add(widget);
                 }
-                else if (!widget.rectangle.Contains(point) && Hovered.Contains(widget))
+                else if (!widget.Rectangle.Contains(point) && Hovered.Contains(widget))
                 {
                     widget.OnUnHover();
                     Hovered.Remove(widget);
@@ -124,7 +124,7 @@ namespace EG2DCS.Engine.Screen_Manager
             Point point = new Point(x, y);
             foreach (Widget widget in Widgets)
             {
-                if (widget.rectangle.Contains(point))
+                if (widget.Rectangle.Contains(point))
                 {
                     if (widget is IFocusable)
                     {

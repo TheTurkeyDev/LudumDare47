@@ -45,8 +45,8 @@ namespace EG2DCS.Engine.Widgets
         {
             base.Draw();
             if (selected)
-                Universal.SpriteBatch.Draw(Textures.Null, rectangle, selectedColor);
-            Universal.SpriteBatch.DrawString(Fonts.Arial_12, text.Length == 0 ? placeholderText : text, new Vector2(rectangle.X, rectangle.Y), textColor);
+                Universal.SpriteBatch.Draw(Textures.Null, Rectangle, selectedColor);
+            Universal.SpriteBatch.DrawString(Fonts.Arial_12, text.Length == 0 ? placeholderText : text, new Vector2(Rectangle.X, Rectangle.Y), textColor);
         }
 
         public override void Remove()

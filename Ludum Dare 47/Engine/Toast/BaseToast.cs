@@ -29,7 +29,7 @@ namespace EG2DCS.Engine.Toast
             from = new Vector2((Universal.GameSize.X / 2) - 250, Universal.GameSize.Y + 100);
             to = new Vector2(from.X, from.Y - 300);
 
-            rectangle = new Rectangle((int)from.X, (int)from.Y, 500, 100);
+            Rectangle = new Rectangle((int)from.X, (int)from.Y, 500, 100);
             base.AddAnimation(new MoveAnimation(to, from, 120, () =>
             {
                 delay = true;
@@ -60,7 +60,7 @@ namespace EG2DCS.Engine.Toast
             if (complete)
                 return;
 
-            Universal.SpriteBatch.Draw(Textures.Null, rectangle, color);
+            Universal.SpriteBatch.Draw(Textures.Null, Rectangle, color);
         }
 
         public virtual void Remove()

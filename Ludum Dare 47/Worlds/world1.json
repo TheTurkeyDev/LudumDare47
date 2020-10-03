@@ -1,0 +1,143 @@
+{
+    "Name": "World 1",
+    "WorldMax": {
+        "X": 1400,
+        "Y": 1400
+    },
+    "Walls": [
+        {
+            "Rectangle": {
+                "X": 0,
+                "Y": 0,
+                "Width": 20,
+                "Height": 1400
+            },
+            "Color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 255
+            }
+        },
+        {
+            "Rectangle": {
+                "X": 1400,
+                "Y": 0,
+                "Width": 20,
+                "Height": 1400
+            },
+            "Color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 255
+            }
+        },
+        {
+            "Rectangle": {
+                "X": 0,
+                "Y": 0,
+                "Width": 1400,
+                "Height": 20
+            },
+            "Color": {
+                "r": 0,
+                "g": 0,
+                "b": 255,
+                "a": 255
+            }
+        },
+        {
+            "Rectangle": {
+                "X": 0,
+                "Y": 1400,
+                "Width": 1400,
+                "Height": 20
+            },
+            "Color": {
+                "r": 0,
+                "g": 255,
+                "b": 0,
+                "a": 255
+            }
+        },
+        {
+            "Rectangle": {
+                "X": 500,
+                "Y": 1250,
+                "Width": 1000,
+                "Height": 22
+            },
+            "Color": {
+                "r": 0,
+                "g": 0,
+                "b": 0,
+                "a": 255
+            }
+        }
+    ],
+    "Entities": [
+        {
+            "id": "key",
+            "x": 300,
+            "y": 1300,
+            "width": 16,
+            "height": 32,
+            "gravity": false
+        },
+        {
+            "id": "double_jump",
+            "x": 200,
+            "y": 1350,
+            "width": 32,
+            "height": 32,
+            "gravity": false
+        },
+        {
+            "id": "door",
+            "x": 600,
+            "y": 1272,
+            "width": 64,
+            "height": 128
+        },
+        {
+            "id": "door",
+            "x": 1100,
+            "y": 1272,
+            "width": 64,
+            "height": 128
+        },
+        {
+            "id": "key",
+            "x": 900,
+            "y": 1300,
+            "width": 16,
+            "height": 32,
+            "gravity": false
+        },
+        {
+            "id": "button",
+            "x": 900,
+            "y": 1350,
+            "width": 64,
+            "height": 16,
+            "wallMounted": false
+        },
+        {
+            "id": "button",
+            "x": 20,
+            "y": 1300,
+            "width": 16,
+            "height": 64,
+            "wallMounted": true,
+            "gravity": false
+        },
+        {
+            "id": "exit_door",
+            "x": 1300,
+            "y": 1272,
+            "width": 64,
+            "height": 128
+        }
+    ]
+}

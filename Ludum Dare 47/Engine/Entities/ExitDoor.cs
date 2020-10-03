@@ -10,10 +10,10 @@ namespace Ludum_Dare_47.Engine.Entities
 {
     class ExitDoor : Entity
     {
-        private World world;
-        public ExitDoor(Rectangle rect, World world) : base(rect)
+        public override string EntId { get; } = "exit_door";
+
+        public ExitDoor(Rectangle rect) : base(rect)
         {
-            this.world = world;
         }
 
         public override void Reset()
@@ -23,15 +23,31 @@ namespace Ludum_Dare_47.Engine.Entities
 
         public override void Draw(int offsetX, int offsetY)
         {
-            Universal.SpriteBatch.Draw(Textures.Null, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), Color.LightGreen);
+            Rectangle sourceRect = new Rectangle(0, 0, 64, 128);
+            bool complete = true;
+            foreach (Task task in World.Tasks)
+            {
+                if (!task.Complete)
+                {
+                    complete = false;
+                    break;
+                }
+            }
+
+
+            if (complete)
+                sourceRect.X = 64;
+
+            Universal.SpriteBatch.Draw(Textures.ExitDoor, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), sourceRect, Color.White);
         }
 
         public override bool OnCollide(Entity ent)
         {
-            bool complete = true;
+
             if (ent is Player)
             {
-                foreach (Task task in world.Tasks)
+                bool complete = true;
+                foreach (Task task in World.Tasks)
                 {
                     if (!task.Complete)
                     {
@@ -43,12 +59,16 @@ namespace Ludum_Dare_47.Engine.Entities
                 if (complete)
                 {
                     Console.WriteLine("Here");
-                    world.Reset();
+                    World.Reset();
+                }
+                else
+                {
+                    Console.WriteLine("Complete all tasks!");
                 }
             }
 
 
-            return complete;
+            return true;
         }
     }
 }

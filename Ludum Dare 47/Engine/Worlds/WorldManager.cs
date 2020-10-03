@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Ludum_Dare_47.Engine.Worlds
 {
-    public class Task
+    public class WorldManager
     {
-        public bool Complete { get; set; }
+        public static List<World> Worlds { get; } = new List<World>();
     }
 }

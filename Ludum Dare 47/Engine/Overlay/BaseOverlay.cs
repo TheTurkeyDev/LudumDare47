@@ -27,7 +27,7 @@ namespace EG2DCS.Engine.Overlay
         }
         public virtual void Draw()
         {
-            Universal.SpriteBatch.Draw(Textures.Null, rectangle, color);
+            Universal.SpriteBatch.Draw(Textures.Null, Rectangle, color);
         }
         public virtual void Remove()
         {

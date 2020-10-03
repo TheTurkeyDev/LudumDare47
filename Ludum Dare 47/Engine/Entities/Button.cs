@@ -1,6 +1,7 @@
 ﻿using EG2DCS.Engine.Globals;
 using Ludum_Dare_47.Engine.Worlds;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +11,23 @@ namespace Ludum_Dare_47.Engine.Entities
 {
     class Button : Entity
     {
-        private bool Pressed = false;
-        private bool wallMounted = false;
+
+        public override string EntId { get; } = "button";
+
+        public bool Pressed { get; private set; }
+        public bool WallMounted { get; set; } = false;
         private Task task;
 
-        public Button(Rectangle rect, bool wallMounted, Task task) : base(rect)
+        public Button(Rectangle rect) : base(rect)
         {
-            this.task = task;
-            this.wallMounted = wallMounted;
-            if (wallMounted)
-                Gravity = false;
 
+        }
+
+        public override void Setup(World World)
+        {
+            base.Setup(World);
+            task = new Task();
+            World.Tasks.Add(task);
         }
 
         public override void Reset()
@@ -32,22 +39,29 @@ namespace Ludum_Dare_47.Engine.Entities
 
         public override void Draw(int offsetX, int offsetY)
         {
-            Universal.SpriteBatch.Draw(Textures.Null, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), Pressed ? Color.DarkRed : Color.Red);
+            Rectangle sourceRect = new Rectangle(0, 0, 64, 16);
+            if (WallMounted)
+            {
+                sourceRect.Width = 16;
+                sourceRect.Height = 64;
+                if (Pressed)
+                {
+                    sourceRect.Y = 64;
+                }
+            }
+            else if (Pressed)
+            {
+                sourceRect.X = 64;
+            }
+
+
+            Universal.SpriteBatch.Draw(WallMounted ? Textures.Button_Wall : Textures.Button, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), sourceRect, Color.White);
         }
 
         public override bool OnCollide(Entity ent)
         {
             if (ent is Player && !Pressed)
             {
-                if (wallMounted)
-                {
-                    position.Width /= 2;
-                }
-                else
-                {
-                    position.Height /= 2;
-                    position.Y += position.Height;
-                }
                 Pressed = true;
                 task.Complete = true;
             }

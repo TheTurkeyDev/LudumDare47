@@ -11,6 +11,8 @@ namespace Ludum_Dare_47.Engine.Entities
 {
     class DoubleJump : Entity
     {
+        public override string EntId { get; } = "double_jump";
+
         public DoubleJump(Rectangle rect) : base(rect)
         {
 
@@ -18,7 +20,7 @@ namespace Ludum_Dare_47.Engine.Entities
 
         public override void Draw(int offsetX, int offsetY)
         {
-            Universal.SpriteBatch.Draw(Textures.Null, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), Color.Green);
+            Universal.SpriteBatch.Draw(Textures.DoubleJump, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), Color.White);
         }
 
         public override bool OnCollide(Entity ent)
@@ -27,6 +29,7 @@ namespace Ludum_Dare_47.Engine.Entities
             {
                 ((Player)ent).Inventory.AddItem(Item.DOUBLE_JUMP);
                 IsDead = true;
+                Sounds.Powerup.Play();
             }
             return base.OnCollide(ent);
         }
