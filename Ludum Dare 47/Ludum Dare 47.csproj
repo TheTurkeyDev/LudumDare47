@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CBAB0B49-8B45-462F-B8C8-15105AC6A7A7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ludum_Dare_47</RootNamespace>
+    <AssemblyName>Ludum Dare 47</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;LINUX</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;LINUX</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Engine\Add Ons\DrawLive.cs" />
+    <Compile Include="Engine\Add Ons\Maths.cs" />
+    <Compile Include="Engine\Animation\Animator.cs" />
+    <Compile Include="Engine\Animation\BaseAnimation.cs" />
+    <Compile Include="Engine\Animation\ButtonHighlightAnimation.cs" />
+    <Compile Include="Engine\Animation\MoveAnimation.cs" />
+    <Compile Include="Engine\Blanks\Default_Screen.cs" />
+    <Compile Include="Engine\Entities\DoubleJump.cs" />
+    <Compile Include="Engine\Entities\ExitDoor.cs" />
+    <Compile Include="Engine\Entities\Entity.cs" />
+    <Compile Include="Engine\Entities\Door.cs" />
+    <Compile Include="Engine\Entities\Button.cs" />
+    <Compile Include="Engine\Entities\Key.cs" />
+    <Compile Include="Engine\Entities\Player.cs" />
+    <Compile Include="Engine\Globals\Fonts.cs" />
+    <Compile Include="Engine\Globals\Input.cs" />
+    <Compile Include="Engine\Globals\Sounds.cs" />
+    <Compile Include="Engine\Globals\Textures.cs" />
+    <Compile Include="Engine\Globals\Universal.cs" />
+    <Compile Include="Engine\Items\Item.cs" />
+    <Compile Include="Engine\Overlay\BaseOverlay.cs" />
+    <Compile Include="Engine\Screen\BaseScreen.cs" />
+    <Compile Include="Engine\Screen\GameScreen.cs" />
+    <Compile Include="Engine\Screen\ScreenManager.cs" />
+    <Compile Include="Engine\Items\Inventory.cs" />
+    <Compile Include="Engine\Worlds\Task.cs" />
+    <Compile Include="Engine\Toast\BaseToast.cs" />
+    <Compile Include="Engine\Widgets\Button.cs" />
+    <Compile Include="Engine\Widgets\IFocusable.cs" />
+    <Compile Include="Engine\Widgets\InputField.cs" />
+    <Compile Include="Engine\Widgets\Label.cs" />
+    <Compile Include="Engine\Widgets\Widget.cs" />
+    <Compile Include="Engine\Worlds\World.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.ico" />
+    <EmbeddedResource Include="Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
+      <Link>x86\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\SDL2.dll">
+      <Link>x64\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\soft_oal.dll">
+      <Link>x86\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\soft_oal.dll">
+      <Link>x64\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libSDL2-2.0.so.0">
+      <Link>x86\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libSDL2-2.0.so.0">
+      <Link>x64\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libopenal.so.1">
+      <Link>x86\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libopenal.so.1">
+      <Link>x64\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
+      <Link>libSDL2-2.0.0.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
+      <Link>libopenal.1.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll.config">
+      <Link>MonoGame.Framework.dll.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app.manifest" />
+    <None Include="Content\Arial_12.spritefont" />
+    <None Include="Content\File.spritefont" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Null.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
