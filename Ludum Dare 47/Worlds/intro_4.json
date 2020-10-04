@@ -1,0 +1,194 @@
+{
+  "Name": "Intro 4",
+  "Id": "intro_4",
+  "NextLevel": "intro_5",
+  "TimeLimit": 999,
+  "WorldMax": {
+    "X": 1000,
+    "Y": 500
+  },
+  "Player": {
+    "x": 100,
+    "y": 400,
+    "width": 32,
+    "height": 64
+  },
+  "Walls": [
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 20,
+        "Height": 500
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 1000,
+        "Y": 0,
+        "Width": 20,
+        "Height": 500
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 255,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 500,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 255,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 700,
+        "Y": 350,
+        "Width": 20,
+        "Height": 150
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 700,
+        "Y": 350,
+        "Width": 150,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 850,
+        "Y": 200,
+        "Width": 20,
+        "Height": 170
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 700,
+        "Y": 200,
+        "Width": 300,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    }
+  ],
+  "Entities": [
+    {
+      "id": "exit_door",
+      "x": 50,
+      "y": 372,
+      "width": 64,
+      "height": 128
+    },
+    {
+      "id": "note",
+      "x": 150,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "Levels may also have tasks",
+        "that need to be complete before",
+        "the exit door will open!",
+        "Complete all of the tasks and come",
+        "back and the door will be open to",
+        "advance to the next level!"
+      ]
+    },
+    {
+      "id": "note",
+      "x": 400,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "This is a button!",
+        "Simply press it to complete the task!",
+        "Buttons can be mounted on any surface!"
+      ]
+    },
+    {
+      "id": "button",
+      "x": 550,
+      "y": 484,
+      "width": 64,
+      "height": 16
+    },
+    {
+      "id": "button",
+      "x": 684,
+      "y": 425,
+      "width": 16,
+      "height": 64,
+      "Face": 2,
+      "wallMounted": true,
+      "Gravity": false
+    },
+    {
+      "id": "button",
+      "x": 725,
+      "y": 216,
+      "width": 64,
+      "height": 16,
+      "Face": 1,
+      "Gravity": false
+    }
+  ]
+}

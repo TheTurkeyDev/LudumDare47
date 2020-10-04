@@ -1,0 +1,121 @@
+{
+  "Name": "Intro 1",
+  "Id": "intro_1",
+  "NextLevel": "intro_2",
+  "TimeLimit": 99999,
+  "WorldMax": {
+    "X": 1000,
+    "Y": 500
+  },
+  "Player": {
+    "x": 100,
+    "y": 400,
+    "width": 32,
+    "height": 64
+  },
+  "Walls": [
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 20,
+        "Height": 500
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 1000,
+        "Y": 0,
+        "Width": 20,
+        "Height": 500
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 255,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 500,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 255,
+        "b": 0,
+        "a": 255
+      }
+    }
+  ],
+  "Entities": [
+    {
+      "id": "exit_door",
+      "x": 700,
+      "y": 372,
+      "width": 64,
+      "height": 128
+    },
+    {
+      "id": "note",
+      "x": 150,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "This is a note!",
+        "When you walk over me,",
+        "I display a message!"
+      ]
+    },
+    {
+      "id": "note",
+      "x": 300,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "Welcome to the tutorial!",
+        "Use A and D to move side to side",
+        "Space to Jump!"
+      ]
+    },
+    {
+      "id": "note",
+      "x": 450,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "Proceed through the door",
+        "to get to the next level!"
+      ]
+    }
+  ]
+}

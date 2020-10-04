@@ -1,0 +1,174 @@
+{
+  "Name": "World 1",
+  "Id": "world_1",
+  "NextLevel": "world_2",
+  "TimeLimit": 15,
+  "WorldMax": {
+    "X": 1000,
+    "Y": 700
+  },
+  "Player": {
+    "x": 400,
+    "y": 600,
+    "width": 32,
+    "height": 64
+  },
+  "Walls": [
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 20,
+        "Height": 700
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 1000,
+        "Y": 0,
+        "Width": 20,
+        "Height": 700
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 255,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 700,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 255,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 552,
+        "Width": 300,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 300,
+        "Y": 472,
+        "Width": 20,
+        "Height": 100
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 700,
+        "Y": 552,
+        "Width": 300,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    }
+  ],
+  "Entities": [
+    {
+      "id": "exit_door",
+      "x": 920,
+      "y": 572,
+      "width": 64,
+      "height": 128
+    },
+    {
+      "id": "door",
+      "x": 200,
+      "y": 572,
+      "width": 64,
+      "height": 128,
+      "gravity": false
+    },
+    {
+      "id": "button",
+      "x": 50,
+      "y": 684,
+      "width": 64,
+      "height": 16,
+      "gravity": false,
+      "face": 0
+    },
+    {
+      "id": "door",
+      "x": 700,
+      "y": 572,
+      "width": 64,
+      "height": 128,
+      "gravity": false
+    },
+    {
+      "id": "key",
+      "x": 700,
+      "y": 500,
+      "width": 16,
+      "height": 32,
+      "gravity": false
+    },
+    {
+      "id": "double_jump",
+      "x": 850,
+      "y": 500,
+      "width": 32,
+      "height": 32,
+      "gravity": false
+    },
+    {
+      "id": "key",
+      "x": 100,
+      "y": 500,
+      "width": 16,
+      "height": 32,
+      "gravity": false
+    }
+  ]
+}

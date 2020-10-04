@@ -1,0 +1,104 @@
+{
+  "Name": "World 4",
+  "Id": "world_4",
+  "NextLevel": "world_4",
+  "TimeLimit": 5,
+  "WorldMax": {
+    "X": 1000,
+    "Y": 700
+  },
+  "Player": {
+    "x": 350,
+    "y": 150,
+    "width": 32,
+    "height": 64
+  },
+  "Walls": [
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 20,
+        "Height": 700
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 1000,
+        "Y": 0,
+        "Width": 20,
+        "Height": 700
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 700,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 255,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 250,
+        "Width": 425,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 650,
+        "Y": 250,
+        "Width": 350,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    }
+  ],
+  "Entities": [
+    {
+      "id": "exit_door",
+      "x": 920,
+      "y": 122,
+      "width": 64,
+      "height": 128
+    },
+    {
+      "id": "button",
+      "x": 550,
+      "y": -1900,
+      "width": 64,
+      "height": 16
+    }
+  ]
+}

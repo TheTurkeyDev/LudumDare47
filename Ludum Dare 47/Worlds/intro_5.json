@@ -1,0 +1,152 @@
+{
+  "Name": "Intro 5",
+  "Id": "intro_5",
+  "NextLevel": "world_1",
+  "TimeLimit": 999,
+  "WorldMax": {
+    "X": 1000,
+    "Y": 500
+  },
+  "Player": {
+    "x": 100,
+    "y": 400,
+    "width": 32,
+    "height": 64
+  },
+  "Walls": [
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 20,
+        "Height": 500
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 1000,
+        "Y": 0,
+        "Width": 20,
+        "Height": 500
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 255,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 500,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 255,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 352,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    }
+  ],
+  "Entities": [
+    {
+      "id": "exit_door",
+      "x": 920,
+      "y": 372,
+      "width": 64,
+      "height": 128
+    },
+    {
+      "id": "note",
+      "x": 150,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "Another obsticle that you may encounter",
+        "are locked doors!",
+        "You cannot pass through these doors",
+        "unless you unlock them!"
+      ]
+    },
+    {
+      "id": "note",
+      "x": 300,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "To unlock locked doors, you need a key!",
+        "Simply pick up a key and walk through a",
+        "door with a key to unlock!"
+      ]
+    },
+    {
+      "id": "key",
+      "x": 350,
+      "y": 450,
+      "width": 16,
+      "height": 32,
+      "gravity": false
+    },
+    {
+      "id": "door",
+      "x": 650,
+      "y": 372,
+      "width": 64,
+      "height": 128
+    },
+    {
+      "id": "note",
+      "x": 800,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "You have completed the tutorial!",
+        "Go through the door to begin the",
+        "challenges!"
+      ]
+    }
+  ]
+}

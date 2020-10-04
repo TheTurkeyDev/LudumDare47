@@ -1,0 +1,117 @@
+{
+  "Name": "Intro 3",
+  "Id": "intro_3",
+  "NextLevel": "intro_4",
+  "TimeLimit": 999,
+  "WorldMax": {
+    "X": 1000,
+    "Y": 500
+  },
+  "Player": {
+    "x": 100,
+    "y": 400,
+    "width": 32,
+    "height": 64
+  },
+  "Walls": [
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 20,
+        "Height": 500
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 1000,
+        "Y": 0,
+        "Width": 20,
+        "Height": 500
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 255,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 500,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 255,
+        "b": 0,
+        "a": 255
+      }
+    }
+  ],
+  "Entities": [
+    {
+      "id": "exit_door",
+      "x": 900,
+      "y": 372,
+      "width": 64,
+      "height": 128
+    },
+    {
+      "id": "note",
+      "x": 150,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "This game is not as simple as",
+        "Just walking through doors!",
+        "There are also powerups!"
+      ]
+    },
+    {
+      "id": "note",
+      "x": 300,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "This is a Double Jump Powerup!",
+        "It allows you to jump again",
+        "while in the air!"
+      ]
+    },
+    {
+      "id": "double_jump",
+      "x": 300,
+      "y": 450,
+      "width": 32,
+      "height": 32,
+      "gravity": false
+    }
+  ]
+}

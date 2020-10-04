@@ -50,6 +50,7 @@
     <Compile Include="Engine\Animation\MoveAnimation.cs" />
     <Compile Include="Engine\Blanks\Default_Screen.cs" />
     <Compile Include="Engine\Entities\DoubleJump.cs" />
+    <Compile Include="Engine\Entities\Note.cs" />
     <Compile Include="Engine\Entities\ExitDoor.cs" />
     <Compile Include="Engine\Entities\Entity.cs" />
     <Compile Include="Engine\Entities\Door.cs" />
@@ -62,11 +63,14 @@
     <Compile Include="Engine\Globals\Textures.cs" />
     <Compile Include="Engine\Globals\Universal.cs" />
     <Compile Include="Engine\Items\Item.cs" />
+    <Compile Include="Engine\Overlay\TextOverlay.cs" />
     <Compile Include="Engine\Overlay\BaseOverlay.cs" />
     <Compile Include="Engine\Screen\BaseScreen.cs" />
     <Compile Include="Engine\Screen\GameScreen.cs" />
     <Compile Include="Engine\Screen\ScreenManager.cs" />
     <Compile Include="Engine\Items\Inventory.cs" />
+    <Compile Include="Engine\Toast\TextToast.cs" />
+    <Compile Include="Engine\Worlds\Face.cs" />
     <Compile Include="Engine\Worlds\CustomJsonConverter.cs" />
     <Compile Include="Engine\Worlds\Task.cs" />
     <Compile Include="Engine\Toast\BaseToast.cs" />
@@ -147,7 +151,34 @@
     <None Include="Content\Arial_12.spritefont" />
     <None Include="Content\File.spritefont" />
     <None Include="packages.config" />
-    <None Include="Worlds\world1.json">
+    <None Include="Worlds\world_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Worlds\world_2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Worlds\world_4.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Worlds\world_3.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Worlds\intro_5.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Worlds\intro_4.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Worlds\intro_3.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Worlds\intro_2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Worlds\intro_1.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Worlds\test.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -157,6 +188,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <ProjectExtensions />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

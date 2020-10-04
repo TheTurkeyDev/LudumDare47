@@ -16,6 +16,7 @@ namespace Ludum_Dare_47.Engine.Entities
 
         public bool Pressed { get; private set; }
         public bool WallMounted { get; set; } = false;
+        public Face AttatchFace { get; set; }
         private Task task;
 
         public Button(Rectangle rect) : base(rect)
@@ -54,8 +55,7 @@ namespace Ludum_Dare_47.Engine.Entities
                 sourceRect.X = 64;
             }
 
-
-            Universal.SpriteBatch.Draw(WallMounted ? Textures.Button_Wall : Textures.Button, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), sourceRect, Color.White);
+            Universal.SpriteBatch.Draw(WallMounted ? Textures.Button_Wall : Textures.Button, new Rectangle((int)Position.X + offsetX, (int)Position.Y + offsetY, Position.Width, Position.Height), sourceRect, Color.White, 0f, new Vector2(0, 0), AttatchFace == Face.LEFT ? SpriteEffects.FlipHorizontally : (AttatchFace == Face.BOTTOM ? SpriteEffects.FlipVertically : SpriteEffects.None), 0f);
         }
 
         public override bool OnCollide(Entity ent)

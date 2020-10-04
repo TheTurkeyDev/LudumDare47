@@ -1,4 +1,5 @@
 ﻿using EG2DCS.Engine.Globals;
+using EG2DCS.Engine.Screen_Manager;
 using Ludum_Dare_47.Engine.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -14,24 +15,27 @@ namespace Ludum_Dare_47.Engine.Worlds
     public class World
     {
         private static Vector2 SideBuffer = new Vector2(100, 150);
-
-        public int TimeLeft { get; private set; } = 100 * 60;
+        public int TimeLeft { get; private set; }
 
         public List<Task> Tasks { get; } = new List<Task>();
 
+        public string Id { get; set; }
         public string Name { get; set; }
+        public string NextLevel { get; set; }
+        public int TimeLimit { get; set; }
 
         public List<Wall> Walls { get; set; }
         public List<Entity> Entities { get; set; } = new List<Entity>();
         [JsonConverter(typeof(CustomVector2Converter))]
         public Vector2 WorldMax { get; set; } = new Vector2(1400, 1400);
 
+        [JsonConverter(typeof(CustomPlayerConverter))]
+        public Player Player { get; set; }
 
-        public Player player;
+        public GameScreen GameScreen { get; set; }
 
         public World()
         {
-            player = new Player();
 
             //Task task = new Task();
             //Entities.Add(new Button(new Rectangle(900, 1350, 64, 16), false, task));
@@ -45,14 +49,16 @@ namespace Ludum_Dare_47.Engine.Worlds
         {
             foreach (Entity ent in Entities)
                 ent.Setup(this);
+            Player.Setup(this);
+            TimeLeft = TimeLimit * 60;
         }
 
         public void Reset()
         {
-            TimeLeft = 100 * 60;
+            TimeLeft = TimeLimit * 60;
             foreach (Entity ent in Entities)
                 ent.Reset();
-            player.Reset();
+            Player.Reset();
         }
 
         public void Update()
@@ -65,8 +71,8 @@ namespace Ludum_Dare_47.Engine.Worlds
                     MoveEntity(ent, ent.Velocity.X, ent.Velocity.Y);
                 }
             }
-            player.Update();
-            MoveEntity(player, player.Velocity.X, player.Velocity.Y);
+            Player.Update();
+            MoveEntity(Player, Player.Velocity.X, Player.Velocity.Y);
 
             TimeLeft--;
             if (TimeLeft == 0)
@@ -80,8 +86,8 @@ namespace Ludum_Dare_47.Engine.Worlds
             float screenWidth = Universal.GameSize.X;
             float screenHeight = Universal.GameSize.Y;
 
-            int offsetX = MathHelper.Clamp((int)((screenWidth / 2) - player.Position.X), (int)(Universal.GameSize.X - SideBuffer.X - WorldMax.X), (int)SideBuffer.X);
-            int offsetY = MathHelper.Clamp((int)((screenHeight / 2) - player.Position.Y), (int)(Universal.GameSize.Y - SideBuffer.Y - WorldMax.Y), (int)SideBuffer.Y);
+            int offsetX = MathHelper.Clamp((int)((screenWidth / 2) - Player.Position.X), (int)(Universal.GameSize.X - SideBuffer.X - WorldMax.X), (int)SideBuffer.X);
+            int offsetY = MathHelper.Clamp((int)((screenHeight / 2) - Player.Position.Y), (int)(Universal.GameSize.Y - SideBuffer.Y - WorldMax.Y), (int)SideBuffer.Y);
 
             Universal.SpriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
 
@@ -96,11 +102,7 @@ namespace Ludum_Dare_47.Engine.Worlds
             foreach (Entity ent in Entities)
                 if (!ent.IsDead)
                     ent.Draw(offsetX, offsetY);
-            player.Draw(offsetX, offsetY);
-
-            Universal.SpriteBatch.Draw(Textures.Null, new Rectangle(200 + offsetX, 200 + offsetY, 40, 40), Color.Black);
-            Universal.SpriteBatch.Draw(Textures.Null, new Rectangle(300 + offsetX, 100 + offsetY, 40, 40), Color.Black);
-            Universal.SpriteBatch.Draw(Textures.Null, new Rectangle(-200 + offsetX, -200 + offsetY, 40, 40), Color.Black);
+            Player.Draw(offsetX, offsetY);
 
             Universal.SpriteBatch.End();
         }
@@ -108,7 +110,7 @@ namespace Ludum_Dare_47.Engine.Worlds
 
         public void PlayerJump()
         {
-            player.Jump();
+            Player.Jump();
         }
 
         public bool MoveEntity(Entity ent, float xMov, float yMov)
@@ -177,6 +179,11 @@ namespace Ludum_Dare_47.Engine.Worlds
             }
 
             return moved;
+        }
+
+        public void Advance()
+        {
+            GameScreen.AdvanceToLevel(NextLevel);
         }
     }
 }

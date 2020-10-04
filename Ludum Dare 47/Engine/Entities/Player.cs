@@ -1,5 +1,6 @@
 ﻿using EG2DCS.Engine.Animation;
 using EG2DCS.Engine.Globals;
+using EG2DCS.Engine.Screen_Manager;
 using Ludum_Dare_47.Engine.Items;
 using Microsoft.Xna.Framework;
 using System;
@@ -23,7 +24,7 @@ namespace Ludum_Dare_47.Engine.Entities
         public bool Moving { get; set; } = false;
         public bool FacingRight { get; set; } = true;
 
-        public Player() : base(new Rectangle(100, 1300, 32, 64))
+        public Player(Rectangle rect) : base(rect)
         {
 
         }
@@ -36,7 +37,7 @@ namespace Ludum_Dare_47.Engine.Entities
 
         public void Jump()
         {
-            if (!InAir() || Inventory.HasItem(Item.DOUBLE_JUMP))
+            if ((!InAir() && Velocity.Y <= 0.7f) || Inventory.HasItem(Item.DOUBLE_JUMP))
             {
                 if (InAir())
                     Inventory.RemoveItem(Item.DOUBLE_JUMP);
@@ -71,7 +72,7 @@ namespace Ludum_Dare_47.Engine.Entities
         public override void Update()
         {
             base.Update();
-            if (Moving)
+            if (Moving && !inAir)
             {
                 soundDelay--;
                 if (soundDelay == 0)

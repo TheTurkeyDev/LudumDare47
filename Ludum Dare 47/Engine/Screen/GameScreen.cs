@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace EG2DCS.Engine.Screen_Manager
 {
-    class GameScreen : BaseScreen
+    public class GameScreen : BaseScreen
     {
         private World CurrentWorld { get; set; }
 
@@ -17,7 +17,8 @@ namespace EG2DCS.Engine.Screen_Manager
             Name = "Game";
             State = ScreenState.Active;
             Input.setCurrentKeyListener(this);
-            CurrentWorld = WorldManager.Worlds[0];
+            //AdvanceToLevel("intro_1");
+            AdvanceToLevel("world_1");
         }
         public override void HandleInput()
         {
@@ -26,26 +27,18 @@ namespace EG2DCS.Engine.Screen_Manager
             if (base.focusedWidget != null)
                 return;
 
-            CurrentWorld.player.Moving = false;
+            CurrentWorld.Player.Moving = false;
 
             if (Input.KeyDown(Keys.A))
             {
-                CurrentWorld.player.Moving = CurrentWorld.MoveEntity(CurrentWorld.player, -4, 0);
-                CurrentWorld.player.FacingRight = false;
+                CurrentWorld.Player.Moving = CurrentWorld.MoveEntity(CurrentWorld.Player, -4, 0);
+                CurrentWorld.Player.FacingRight = false;
             }
 
             if (Input.KeyDown(Keys.D))
             {
-                CurrentWorld.player.Moving = CurrentWorld.MoveEntity(CurrentWorld.player, 4, 0);
-                CurrentWorld.player.FacingRight = true;
-            }
-
-            if (Input.KeyPressed(Keys.Escape))
-            {
-                if (base.PopOverlay() == null)
-                {
-                    ScreenManager.KillAll(false, "Gametest");
-                }
+                CurrentWorld.Player.Moving = CurrentWorld.MoveEntity(CurrentWorld.Player, 4, 0);
+                CurrentWorld.Player.FacingRight = true;
             }
         }
 
@@ -70,7 +63,6 @@ namespace EG2DCS.Engine.Screen_Manager
         }
         public override void Draw()
         {
-            base.Draw();
             CurrentWorld.Draw();
 
             Universal.SpriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
@@ -78,7 +70,7 @@ namespace EG2DCS.Engine.Screen_Manager
 
             //Inventory
             Universal.SpriteBatch.Draw(Textures.Null, new Rectangle(100, (int)Universal.GameSize.Y - 120, 5, 120), Color.DarkGray);
-            List<ItemStack> stacks = CurrentWorld.player.Inventory.Items;
+            List<ItemStack> stacks = CurrentWorld.Player.Inventory.Items;
             for (int i = 0; i < stacks.Count; i++)
             {
                 ItemStack stack = stacks[i];
@@ -96,9 +88,17 @@ namespace EG2DCS.Engine.Screen_Manager
             Universal.SpriteBatch.End();
             Universal.SpriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
             Universal.SpriteBatch.DrawString(Fonts.Arial_12, "Time Left:", new Vector2(10, (int)Universal.GameSize.Y - 100), Color.Green);
-            Universal.SpriteBatch.DrawString(Fonts.Arial_12, "" + (CurrentWorld.TimeLeft / 60), new Vector2(30, (int)Universal.GameSize.Y - 60), CurrentWorld.TimeLeft > 10 ? Color.Green : Color.Red);
+            Universal.SpriteBatch.DrawString(Fonts.Arial_12, "" + (CurrentWorld.TimeLeft / 60), new Vector2(30, (int)Universal.GameSize.Y - 60), CurrentWorld.TimeLeft > 300 ? Color.Green : Color.Red);
             Universal.SpriteBatch.End();
 
+            base.Draw();
+        }
+
+        public void AdvanceToLevel(string levelId)
+        {
+            CurrentWorld = WorldManager.Worlds.Find(w => w.Id.Equals(levelId));
+            CurrentWorld.GameScreen = this;
+            CurrentWorld.Reset();
         }
     }
 }

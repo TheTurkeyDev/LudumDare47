@@ -1,0 +1,125 @@
+{
+  "Name": "Intro 2",
+  "Id": "intro_2",
+  "NextLevel": "intro_3",
+  "TimeLimit": 60,
+  "WorldMax": {
+    "X": 1000,
+    "Y": 500
+  },
+  "Player": {
+    "x": 100,
+    "y": 400,
+    "width": 32,
+    "height": 64
+  },
+  "Walls": [
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 20,
+        "Height": 500
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 1000,
+        "Y": 0,
+        "Width": 20,
+        "Height": 500
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 255,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 500,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 255,
+        "b": 0,
+        "a": 255
+      }
+    }
+  ],
+  "Entities": [
+    {
+      "id": "exit_door",
+      "x": 700,
+      "y": 372,
+      "width": 64,
+      "height": 128
+    },
+    {
+      "id": "note",
+      "x": 150,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "Congrats! You beat your first level!",
+        "The goal of this game is to walk",
+        "through that door before the time",
+        "in the bottom left runs out!"
+      ]
+    },
+    {
+      "id": "note",
+      "x": 300,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "Failing to do so cause the level",
+        "to reset to its initial state",
+        "causing you to start over!"
+      ]
+    },
+    {
+      "id": "note",
+      "x": 450,
+      "y": 425,
+      "width": 16,
+      "height": 32,
+      "gravity": false,
+      "messages": [
+        "If you so wish, you can wait",
+        "here for the time to run out",
+        "to experience the reset.",
+        "Otherwise proceed through the",
+        "door to the next level..."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "Name": "World 3",
+  "Id": "world_3",
+  "NextLevel": "world_4",
+  "TimeLimit": 10,
+  "WorldMax": {
+    "X": 1000,
+    "Y": 700
+  },
+  "Player": {
+    "x": 100,
+    "y": 600,
+    "width": 32,
+    "height": 64
+  },
+  "Walls": [
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 20,
+        "Height": 700
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 1000,
+        "Y": 0,
+        "Width": 20,
+        "Height": 700
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 0,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 255,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 700,
+        "Width": 1020,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 255,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 0,
+        "Y": 550,
+        "Width": 100,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 200,
+        "Y": 350,
+        "Width": 200,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    },
+    {
+      "Rectangle": {
+        "X": 800,
+        "Y": 350,
+        "Width": 200,
+        "Height": 20
+      },
+      "Color": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 255
+      }
+    }
+  ],
+  "Entities": [
+    {
+      "id": "exit_door",
+      "x": 920,
+      "y": 222,
+      "width": 64,
+      "height": 128
+    },
+    {
+      "id": "double_jump",
+      "x": 600,
+      "y": 150,
+      "width": 32,
+      "height": 32,
+      "gravity": false
+    },
+    {
+      "id": "button",
+      "x": 700,
+      "y": 16,
+      "width": 64,
+      "height": 16,
+      "gravity": false,
+      "face":  1
+    }
+  ]
+}

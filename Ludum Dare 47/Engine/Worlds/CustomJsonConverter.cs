@@ -24,10 +24,28 @@ namespace Ludum_Dare_47.Engine.Worlds
             return o.TryGetValue(tokenName, StringComparison.InvariantCultureIgnoreCase, out t) ? (int)t : (int?)null;
         }
 
+        public static int GetIntTokenValue(JObject o, string tokenName, int defaultInt)
+        {
+            JToken t;
+            return o.TryGetValue(tokenName, StringComparison.InvariantCultureIgnoreCase, out t) ? (int)t : defaultInt;
+        }
+
         public static bool GetBoolTokenValue(JObject o, string tokenName, bool defaultBool)
         {
             JToken t;
             return o.TryGetValue(tokenName, StringComparison.InvariantCultureIgnoreCase, out t) ? (bool)t : defaultBool;
+        }
+
+        public static List<string> GetStringListTokenValue(JObject o, string tokenName)
+        {
+            JToken t;
+            o.TryGetValue(tokenName, StringComparison.InvariantCultureIgnoreCase, out t);
+
+            List<string> toReturn = new List<string>();
+            foreach (JToken token in t.Children())
+                toReturn.Add((string)token);
+
+            return toReturn;
         }
 
         public override bool CanConvert(Type objectType)
@@ -105,7 +123,6 @@ namespace Ludum_Dare_47.Engine.Worlds
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            Console.WriteLine("Here: " + objectType);
             var o = JObject.Load(reader);
 
             var id = GetStringTokenValue(o, "id");
@@ -131,9 +148,14 @@ namespace Ludum_Dare_47.Engine.Worlds
                 case "button":
                     entity = new Button(rect);
                     ((Button)entity).WallMounted = GetBoolTokenValue(o, "wallMounted", false);
+                    ((Button)entity).AttatchFace = (Face)GetIntTokenValue(o, "Face", 0);
                     break;
                 case "exit_door":
                     entity = new ExitDoor(rect);
+                    break;
+                case "note":
+                    entity = new Note(rect);
+                    ((Note)entity).Messages = GetStringListTokenValue(o, "Messages");
                     break;
                 default:
                     entity = new Entity(rect);
@@ -143,6 +165,35 @@ namespace Ludum_Dare_47.Engine.Worlds
             entity.Gravity = GetBoolTokenValue(o, "gravity", true);
 
             return entity;
+        }
+    }
+
+    public class CustomPlayerConverter : CustomJsonConverter
+    {
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            var player = (Player)value;
+
+            var id = player.EntId;
+
+            var o = JObject.FromObject(new { id });
+
+            o.WriteTo(writer);
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            var o = JObject.Load(reader);
+
+            var x = GetIntTokenValue(o, "x") ?? 0;
+            var y = GetIntTokenValue(o, "y") ?? 0;
+            var width = GetIntTokenValue(o, "width") ?? 0;
+            var height = GetIntTokenValue(o, "height") ?? 0;
+            var rect = new Rectangle(x, y, width, height);
+
+            Player player = new Player(rect);
+
+            return player;
         }
     }
 }

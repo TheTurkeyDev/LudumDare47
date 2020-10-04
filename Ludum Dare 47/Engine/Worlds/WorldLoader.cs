@@ -13,12 +13,15 @@ namespace Ludum_Dare_47.Engine.Worlds
     {
         public static void Load()
         {
-            using (var stream = TitleContainer.OpenStream(@"Worlds\world1.json"))
+            foreach (string file in Directory.GetFiles(@"Worlds"))
             {
-                var serializer = new JsonSerializer();
-                World World = (World)serializer.Deserialize(new StreamReader(stream), typeof(World));
-                World.Setup();
-                WorldManager.Worlds.Add(World);
+                using (var stream = TitleContainer.OpenStream(file))
+                {
+                    var serializer = new JsonSerializer();
+                    World World = (World)serializer.Deserialize(new StreamReader(stream), typeof(World));
+                    World.Setup();
+                    WorldManager.Worlds.Add(World);
+                }
             }
         }
     }

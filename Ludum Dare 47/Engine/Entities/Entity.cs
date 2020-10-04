@@ -1,4 +1,5 @@
 ﻿using EG2DCS.Engine.Globals;
+using EG2DCS.Engine.Screen_Manager;
 using Ludum_Dare_47.Engine.Worlds;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
@@ -75,7 +76,10 @@ namespace Ludum_Dare_47.Engine.Entities
         {
             if (inAir && velocity.Y >= 0)
                 this.inAir = false;
-            velocity.Y = 0;
+            else if (velocity.Y <= 0)
+                velocity.Y /= 2;
+            else
+                velocity.Y = 0;
         }
 
         public virtual bool OnCollide(Entity ent)
