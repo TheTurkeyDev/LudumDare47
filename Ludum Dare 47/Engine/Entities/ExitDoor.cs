@@ -51,8 +51,8 @@ namespace Ludum_Dare_47.Engine.Entities
                 Universal.SpriteBatch.Draw(Textures.Null, new Rectangle((int)topLeft.X, (int)topLeft.Y, 100 + Position.Width, 75), sourceRect, Color.Gray);
                 Universal.SpriteBatch.End();
                 Universal.SpriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                Universal.SpriteBatch.DrawString(Fonts.Arial_12, "You must complete", new Vector2((int)topLeft.X + 10, (int)topLeft.Y + 10), Color.Black);
-                Universal.SpriteBatch.DrawString(Fonts.Arial_12, "all tasks!", new Vector2((int)topLeft.X + 10, (int)topLeft.Y + 50), Color.Black);
+                Universal.SpriteBatch.DrawString(Fonts.MyFont_12, "You must complete", new Vector2((int)topLeft.X + 10, (int)topLeft.Y + 10), Color.Black);
+                Universal.SpriteBatch.DrawString(Fonts.MyFont_12, "all tasks!", new Vector2((int)topLeft.X + 10, (int)topLeft.Y + 50), Color.Black);
                 Universal.SpriteBatch.End();
                 Universal.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
             }

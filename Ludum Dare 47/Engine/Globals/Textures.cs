@@ -19,6 +19,14 @@ namespace EG2DCS.Engine.Globals
         public static Texture2D Button_Wall;
         public static Texture2D Note;
 
+        public static Texture2D ItemBanner;
+
+
+        public static Texture2D Twtich;
+        public static Texture2D YouTube;
+        public static Texture2D Twitter;
+        public static Texture2D Github;
+
         public static void Load()
         {
             Null = Universal.Content.Load<Texture2D>("Null");
@@ -30,6 +38,11 @@ namespace EG2DCS.Engine.Globals
             Button = Universal.Content.Load<Texture2D>("entities/button");
             Button_Wall = Universal.Content.Load<Texture2D>("entities/button_wall");
             Note = Universal.Content.Load<Texture2D>("entities/note");
+            ItemBanner = Universal.Content.Load<Texture2D>("item_banner");
+            Twtich = Universal.Content.Load<Texture2D>("socials/twitch");
+            YouTube = Universal.Content.Load<Texture2D>("socials/youtube");
+            Twitter = Universal.Content.Load<Texture2D>("socials/twitter");
+            Github = Universal.Content.Load<Texture2D>("socials/github");
         }
 
     }

@@ -26,7 +26,7 @@ namespace Ludum_Dare_47.Engine.Toast
             Vector2 offset = Rectangle.Location.ToVector2();
             offset.X += 50;
             offset.Y += 20;
-            Universal.SpriteBatch.DrawString(Fonts.Arial_12, Message, offset, Color.White);
+            Universal.SpriteBatch.DrawString(Fonts.MyFont_12, Message, offset, Color.White);
         }
     }
 }

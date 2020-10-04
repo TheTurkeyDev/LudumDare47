@@ -1,6 +1,7 @@
 ﻿using EG2DCS.Engine.Animation;
 using EG2DCS.Engine.Globals;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +13,21 @@ namespace EG2DCS.Engine.Widgets
     public class Button : Widget
     {
         private string text;
+        public SpriteFont TextFont { get; set; } = Fonts.MyFont_12;
+        public Color TextColor { get; set; } = Color.Pink;
+        public bool CenterText { get; set; } = false;
 
-        private Color highlightColor;
+        public Color HighlightColor { get; set; } = Color.Pink;
         public float highlightWidth = 0;
 
         private ButtonHighlightAnimation currentAnim;
 
-        public Button(int x, int y, int width, int height, string text) : this(x, y, width, height, text, Color.White, new Color(Universal.rnd.Next(256), Universal.rnd.Next(256), Universal.rnd.Next(256), 255))
-        {
-        }
+        private Func<bool> clickHandler;
 
-        public Button(int x, int y, int width, int height, string text, Color textColor, Color highlightColor) : base(x, y, width, height)
+        public Button(int x, int y, int width, int height, string text, Func<bool> clickHandler) : base(x, y, width, height)
         {
             this.text = text;
-            this.highlightColor = highlightColor;
+            this.clickHandler = clickHandler;
         }
 
         public override void Update()
@@ -38,10 +40,14 @@ namespace EG2DCS.Engine.Widgets
             base.Draw();
             Rectangle highlightRect = new Rectangle(Rectangle.Location, Rectangle.Size);
             highlightRect.Width = (int)highlightWidth;
-            Universal.SpriteBatch.Draw(Textures.Null, highlightRect, highlightColor);
-            Universal.SpriteBatch.DrawString(Fonts.Arial_12, text, new Vector2(Rectangle.X, Rectangle.Y), Color.White);
-        }
+            Universal.SpriteBatch.Draw(Textures.Null, highlightRect, HighlightColor);
+            Vector2 textMesurements = Fonts.MyFont_24.MeasureString(text);
 
+            if (CenterText)
+                Universal.SpriteBatch.DrawString(TextFont, text, new Vector2(Rectangle.X + ((Rectangle.Width - textMesurements.X) / 2), Rectangle.Y + ((Rectangle.Height - textMesurements.Y) / 2)), TextColor);
+            else
+                Universal.SpriteBatch.DrawString(TextFont, text, new Vector2(Rectangle.X, Rectangle.Y), TextColor);
+        }
         public override void Remove()
         {
         }
@@ -59,8 +65,8 @@ namespace EG2DCS.Engine.Widgets
 
         public override void OnClick(bool lmb)
         {
-            Console.WriteLine("Button Clicked!");
             base.OnClick(lmb);
+            clickHandler.Invoke();
         }
     }
 }

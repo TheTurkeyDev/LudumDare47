@@ -1,5 +1,6 @@
 ﻿using EG2DCS.Engine.Globals;
 using EG2DCS.Engine.Screen_Manager;
+using Ludum_Dare_47.Engine.Globals;
 using Ludum_Dare_47.Engine.Toast;
 using Ludum_Dare_47.Engine.Worlds;
 using Microsoft.Xna.Framework;
@@ -36,7 +37,7 @@ namespace Ludum_Dare_47.Engine.Entities
                 int width = 100;
                 foreach (string message in Messages)
                 {
-                    int textWidth = (int)Fonts.Arial_12.MeasureString(message).X;
+                    int textWidth = (int)Fonts.MyFont_12.MeasureString(message).X;
                     if (textWidth + 20 > width)
                     {
                         width = textWidth + 20;
@@ -44,12 +45,12 @@ namespace Ludum_Dare_47.Engine.Entities
                 }
 
                 Vector2 topLeft = new Vector2(Position.X + offsetX - (width / 2), Position.Y + offsetY - (height + 20));
-                Universal.SpriteBatch.Draw(Textures.Null, new Rectangle((int)topLeft.X, (int)topLeft.Y, width, height), Color.Gray);
+                Universal.SpriteBatch.Draw(Textures.Null, new Rectangle((int)topLeft.X, (int)topLeft.Y, width, height), Colors.BackgroundPrimary75);
                 Universal.SpriteBatch.End();
                 Universal.SpriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
                 for (int i = 0; i < Messages.Count(); i++)
                 {
-                    Universal.SpriteBatch.DrawString(Fonts.Arial_12, Messages[i], new Vector2((int)topLeft.X + 10, (int)topLeft.Y + 10 + (i * 25)), Color.Black);
+                    Universal.SpriteBatch.DrawString(Fonts.MyFont_12, Messages[i], new Vector2((int)topLeft.X + 10, (int)topLeft.Y + 10 + (i * 25)), Colors.TextPrimary);
                 }
                 Universal.SpriteBatch.End();
                 Universal.SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);

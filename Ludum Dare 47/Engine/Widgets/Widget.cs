@@ -11,14 +11,16 @@ namespace EG2DCS.Engine.Widgets
 {
     public class Widget : Animator
     {
-        private Color backgroundColor;
+        public Color BackgroundColor { get; set; } = Color.Black;
 
         private int borderWidth = 0;
-        private Color borderColor;
+        public Color BorderColor { get; set; } = Color.White;
+
+        public bool Visible { get; set; } = true;
 
         public Widget(int x, int y, int width, int height) : base(new Rectangle(x, y, width, height))
         {
-            backgroundColor = new Color(Universal.rnd.Next(256), Universal.rnd.Next(256), Universal.rnd.Next(256), 255);
+
         }
 
         public override void Update()
@@ -32,9 +34,9 @@ namespace EG2DCS.Engine.Widgets
             {
                 Rectangle borderRect = new Rectangle(Rectangle.Location, Rectangle.Size);
                 borderRect.Inflate(borderWidth, borderWidth);
-                Universal.SpriteBatch.Draw(Textures.Null, borderRect, borderColor);
+                Universal.SpriteBatch.Draw(Textures.Null, borderRect, BorderColor);
             }
-            Universal.SpriteBatch.Draw(Textures.Null, Rectangle, backgroundColor);
+            Universal.SpriteBatch.Draw(Textures.Null, Rectangle, BackgroundColor);
         }
 
         public virtual void Remove()
@@ -53,26 +55,15 @@ namespace EG2DCS.Engine.Widgets
         {
         }
 
-        public Color setBackgroundColor(Color color)
-        {
-            Color old = backgroundColor;
-            backgroundColor = color;
-            return old;
-        }
-
         public void setBorder(int width, Color color)
         {
             setBorderWidth(width);
-            setBorderColor(color);
+            BorderColor = color;
         }
 
         public void setBorderWidth(int width)
         {
             this.borderWidth = width;
-        }
-        public void setBorderColor(Color color)
-        {
-            this.borderColor = color;
         }
     }
 }

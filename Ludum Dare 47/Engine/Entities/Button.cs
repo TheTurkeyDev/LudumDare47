@@ -64,6 +64,7 @@ namespace Ludum_Dare_47.Engine.Entities
             {
                 Pressed = true;
                 task.Complete = true;
+                Sounds.Button.Play();
             }
             return base.OnCollide(ent);
         }

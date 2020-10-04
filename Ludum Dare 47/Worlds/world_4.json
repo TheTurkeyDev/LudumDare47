@@ -1,7 +1,8 @@
 {
   "Name": "World 4",
   "Id": "world_4",
-  "NextLevel": "world_4",
+  "Group": "Basic",
+  "NextLevel": "world_5",
   "TimeLimit": 5,
   "WorldMax": {
     "X": 1000,
@@ -50,9 +51,9 @@
         "Height": 20
       },
       "Color": {
-        "r": 0,
-        "g": 255,
-        "b": 0,
+        "r": 25,
+        "g": 100,
+        "b": 25,
         "a": 255
       }
     },

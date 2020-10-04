@@ -15,7 +15,7 @@ namespace EG2DCS.Engine.Screen_Manager
     //Active     | X  |   X  |  X  |
     //Shutdown   |    |      |     |
     //Frozen     | X  |   X  |     |
-    //Paused     | X  |      |     |
+    //Paused     | X  |      |  X  |
     //Background |    |   X  |     |
     //Inactive   |    |      |     |
     //Hiding     |    |   X  |  X  |
@@ -85,6 +85,9 @@ namespace EG2DCS.Engine.Screen_Manager
                         foundScreen.Update();
                         foundScreen.HandleInput();
                         break;
+                    case ScreenState.Paused:
+                        foundScreen.HandleInput();
+                        break;
                 }
             }
 
@@ -115,7 +118,7 @@ namespace EG2DCS.Engine.Screen_Manager
             for (int i = Screens.Count() - 1; i >= 0; i--)
             {
                 BaseScreen foundScreen = Screens[i];
-                if (foundScreen.Name == "Debug")
+                if (foundScreen.Name.Equals("Debug"))
                 {
                     foundScreen.Draw();
                 }
@@ -132,7 +135,7 @@ namespace EG2DCS.Engine.Screen_Manager
             for (int i = Screens.Count() - 1; i >= 0; i--)
             {
                 BaseScreen foundScreen = Screens[i];
-                if (foundScreen.Name == screen)
+                if (foundScreen.Name.Equals(screen))
                 {
                     foundScreen.Remove();
                     break;
@@ -145,7 +148,7 @@ namespace EG2DCS.Engine.Screen_Manager
             for (int i = Screens.Count() - 1; i >= 0; i--)
             {
                 BaseScreen foundScreen = Screens[i];
-                if (name == foundScreen.Name)
+                if (name.Equals(foundScreen.Name))
                 {
                     return true;
                 }
@@ -224,9 +227,10 @@ namespace EG2DCS.Engine.Screen_Manager
             for (int i = Screens.Count() - 1; i >= 0; i--)
             {
                 BaseScreen foundScreen = Screens[i];
-                if (name == foundScreen.Name)
+                if (name.Equals(foundScreen.Name))
                 {
                     foundScreen.State = State;
+                    foundScreen.OnStateChange();
                 }
             }
         }
@@ -240,7 +244,7 @@ namespace EG2DCS.Engine.Screen_Manager
                 for (int i = Screens.Count() - 1; i >= 0; i--)
                 {
                     BaseScreen foundScreen = Screens[i];
-                    if (foundScreen.State == ScreenState.Active)
+                    if (foundScreen.State == ScreenState.Active || foundScreen.State == ScreenState.Paused)
                     {
                         foundScreen.OnClick(true, mouseState.X, mouseState.Y);
                     }
@@ -257,7 +261,7 @@ namespace EG2DCS.Engine.Screen_Manager
                 for (int i = Screens.Count() - 1; i >= 0; i--)
                 {
                     BaseScreen foundScreen = Screens[i];
-                    if (foundScreen.State == ScreenState.Active)
+                    if (foundScreen.State == ScreenState.Active || foundScreen.State == ScreenState.Paused)
                     {
                         foundScreen.OnClick(false, mouseState.X, mouseState.Y);
                     }

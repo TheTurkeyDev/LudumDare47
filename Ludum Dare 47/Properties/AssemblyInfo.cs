@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ludum Dare 47")]
-[assembly: AssemblyProduct("Ludum Dare 47")]
+[assembly: AssemblyTitle("A Timed Loop")]
+[assembly: AssemblyProduct("A Timed Loop")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyDescription("My Game For Ludum Dare 47")]
+[assembly: AssemblyCompany("The Programming Turkey")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

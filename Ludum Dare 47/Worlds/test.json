@@ -1,6 +1,7 @@
 {
   "Name": "Test",
   "id": "test",
+  "Group": "Test",
   "TimeLimit": 20,
   "WorldMax": {
     "X": 1400,

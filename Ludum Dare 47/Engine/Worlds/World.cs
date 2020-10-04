@@ -20,6 +20,7 @@ namespace Ludum_Dare_47.Engine.Worlds
         public List<Task> Tasks { get; } = new List<Task>();
 
         public string Id { get; set; }
+        public string Group { get; set; }
         public string Name { get; set; }
         public string NextLevel { get; set; }
         public int TimeLimit { get; set; }
@@ -37,12 +38,6 @@ namespace Ludum_Dare_47.Engine.Worlds
         public World()
         {
 
-            //Task task = new Task();
-            //Entities.Add(new Button(new Rectangle(900, 1350, 64, 16), false, task));
-            //Tasks.Add(task);
-            //task = new Task();
-            //Entities.Add(new Button(new Rectangle(20, 1300, 16, 64), true, task));
-            //Tasks.Add(task);
         }
 
         public void Setup()
@@ -50,12 +45,12 @@ namespace Ludum_Dare_47.Engine.Worlds
             foreach (Entity ent in Entities)
                 ent.Setup(this);
             Player.Setup(this);
-            TimeLeft = TimeLimit * 60;
+            TimeLeft = (TimeLimit - 1) * 60;
         }
 
         public void Reset()
         {
-            TimeLeft = TimeLimit * 60;
+            TimeLeft = (TimeLimit - 1) * 60;
             foreach (Entity ent in Entities)
                 ent.Reset();
             Player.Reset();
@@ -75,7 +70,7 @@ namespace Ludum_Dare_47.Engine.Worlds
             MoveEntity(Player, Player.Velocity.X, Player.Velocity.Y);
 
             TimeLeft--;
-            if (TimeLeft == 0)
+            if (TimeLeft <= 30)
             {
                 Reset();
             }

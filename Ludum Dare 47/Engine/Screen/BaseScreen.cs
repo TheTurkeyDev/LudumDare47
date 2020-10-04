@@ -26,7 +26,7 @@ namespace EG2DCS.Engine.Screen_Manager
         private List<BaseOverlay> Overlays { get; } = new List<BaseOverlay>();
         private List<BaseToast> Toasts { get; } = new List<BaseToast>();
 
-        private List<Widget> Widgets { get; } = new List<Widget>();
+        protected List<Widget> Widgets { get; } = new List<Widget>();
         private List<Widget> Hovered { get; } = new List<Widget>();
 
         public virtual void HandleInput()
@@ -72,7 +72,8 @@ namespace EG2DCS.Engine.Screen_Manager
             for (int i = Widgets.Count - 1; i >= 0; i--)
             {
                 Widget widget = Widgets[i];
-                widget.Update();
+                if (widget.Visible)
+                    widget.Update();
             }
         }
         public virtual void Draw()
@@ -94,7 +95,8 @@ namespace EG2DCS.Engine.Screen_Manager
             for (int i = Widgets.Count - 1; i >= 0; i--)
             {
                 Universal.SpriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend, SamplerState.PointClamp, DepthStencilState.Default, RasterizerState.CullNone);
-                Widgets[i].Draw();
+                if (Widgets[i].Visible)
+                    Widgets[i].Draw();
                 Universal.SpriteBatch.End();
             }
         }
@@ -118,12 +120,20 @@ namespace EG2DCS.Engine.Screen_Manager
             State = ScreenState.Shutdown;
         }
 
+        public virtual void OnStateChange()
+        {
+
+        }
+
         public virtual void OnClick(bool left, int x, int y)
         {
             bool focusChange = false;
             Point point = new Point(x, y);
             foreach (Widget widget in Widgets)
             {
+                if (!widget.Visible)
+                    continue;
+
                 if (widget.Rectangle.Contains(point))
                 {
                     if (widget is IFocusable)

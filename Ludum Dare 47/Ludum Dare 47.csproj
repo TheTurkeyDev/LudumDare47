@@ -10,10 +10,29 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ludum_Dare_47</RootNamespace>
-    <AssemblyName>Ludum Dare 47</AssemblyName>
+    <AssemblyName>A Timed Loop</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\Programming Projects\LD47\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>en-US</TargetCulture>
+    <ProductName>A Timed Loop</ProductName>
+    <PublisherName>The Programming Turkey</PublisherName>
+    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +60,18 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>43CED9A3E0F0E267E190295A0CD4066235F639D7</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Ludum Dare 47_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Engine\Add Ons\DrawLive.cs" />
     <Compile Include="Engine\Add Ons\Maths.cs" />
@@ -57,15 +88,19 @@
     <Compile Include="Engine\Entities\Button.cs" />
     <Compile Include="Engine\Entities\Key.cs" />
     <Compile Include="Engine\Entities\Player.cs" />
+    <Compile Include="Engine\Globals\Colors.cs" />
     <Compile Include="Engine\Globals\Fonts.cs" />
     <Compile Include="Engine\Globals\Input.cs" />
     <Compile Include="Engine\Globals\Sounds.cs" />
     <Compile Include="Engine\Globals\Textures.cs" />
     <Compile Include="Engine\Globals\Universal.cs" />
     <Compile Include="Engine\Items\Item.cs" />
-    <Compile Include="Engine\Overlay\TextOverlay.cs" />
+    <Compile Include="Engine\Overlay\PauseOverlay.cs" />
     <Compile Include="Engine\Overlay\BaseOverlay.cs" />
     <Compile Include="Engine\Screen\BaseScreen.cs" />
+    <Compile Include="Engine\Screen\LevelSelectScreen.cs" />
+    <Compile Include="Engine\Screen\CreditsScreen.cs" />
+    <Compile Include="Engine\Screen\MainScreen.cs" />
     <Compile Include="Engine\Screen\GameScreen.cs" />
     <Compile Include="Engine\Screen\ScreenManager.cs" />
     <Compile Include="Engine\Items\Inventory.cs" />
@@ -149,12 +184,21 @@
     </None>
     <None Include="app.manifest" />
     <None Include="Content\Arial_12.spritefont" />
-    <None Include="Content\File.spritefont" />
+    <None Include="Content\Inconsolata-Bold.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\MyFont_12.spritefont" />
+    <None Include="Content\MyFont_24.spritefont" />
+    <None Include="Content\MyFont_58.spritefont" />
+    <None Include="Ludum Dare 47_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Worlds\world_1.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Worlds\world_2.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Worlds\world_5.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Worlds\world_4.json">
@@ -185,7 +229,13 @@
   <ItemGroup>
     <Content Include="Content\Null.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <ProjectExtensions />

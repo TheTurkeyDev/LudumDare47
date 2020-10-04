@@ -3,7 +3,6 @@ using EG2DCS.Engine.Screen_Manager;
 using Ludum_Dare_47.Engine.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Ludum_Dare_47
 {
@@ -57,7 +56,10 @@ namespace Ludum_Dare_47
             WorldLoader.Load();
 
             //Add screens here
+            ScreenManager.AddScreen(new MainScreen());
+            ScreenManager.AddScreen(new LevelSelectScreen());
             ScreenManager.AddScreen(new GameScreen());
+            ScreenManager.AddScreen(new CreditsScreen());
 
         }
 

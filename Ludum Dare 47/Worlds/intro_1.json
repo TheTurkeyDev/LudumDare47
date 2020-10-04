@@ -1,6 +1,7 @@
 {
   "Name": "Intro 1",
   "Id": "intro_1",
+  "Group": "Intro",
   "NextLevel": "intro_2",
   "TimeLimit": 99999,
   "WorldMax": {
@@ -50,9 +51,9 @@
         "Height": 20
       },
       "Color": {
-        "r": 0,
-        "g": 0,
-        "b": 255,
+        "r": 25,
+        "g": 25,
+        "b": 175,
         "a": 255
       }
     },
@@ -64,9 +65,9 @@
         "Height": 20
       },
       "Color": {
-        "r": 0,
-        "g": 255,
-        "b": 0,
+        "r": 25,
+        "g": 100,
+        "b": 25,
         "a": 255
       }
     }
@@ -101,8 +102,9 @@
       "gravity": false,
       "messages": [
         "Welcome to the tutorial!",
-        "Use A and D to move side to side",
-        "Space to Jump!"
+        "Use A and D to move side to side,",
+        "Space to Jump,",
+        "and R to reset the level!"
       ]
     },
     {

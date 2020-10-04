@@ -40,6 +40,7 @@ namespace Ludum_Dare_47.Engine.Entities
             {
                 ((Player)ent).Inventory.RemoveItem(Item.KEY);
                 Locked = false;
+                Sounds.Door.Play();
             }
             return !Locked;
         }
