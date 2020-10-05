@@ -1,12 +1,9 @@
 ﻿using EG2DCS.Engine.Globals;
 using EG2DCS.Engine.Widgets;
 using Ludum_Dare_47.Engine.Globals;
-using Ludum_Dare_47.Engine.Items;
-using Ludum_Dare_47.Engine.Worlds;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Collections.Generic;
 
 namespace EG2DCS.Engine.Screen_Manager
 {
